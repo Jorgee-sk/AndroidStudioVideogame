@@ -36,7 +36,7 @@ public class MainMenuFragment extends BaseFragment implements View.OnClickListen
         view.findViewById(R.id.btn_start).startAnimation(pulseAnimation);
 
         Animation titleAnimation1 = AnimationUtils.loadAnimation(getActivity(),
-                R.anim.subtitle_enter);
+                R.anim.title_enter);
         view.findViewById(R.id.img_title).startAnimation(titleAnimation1);
 
        /* Animation titleAnimation = AnimationUtils.loadAnimation(getActivity(),

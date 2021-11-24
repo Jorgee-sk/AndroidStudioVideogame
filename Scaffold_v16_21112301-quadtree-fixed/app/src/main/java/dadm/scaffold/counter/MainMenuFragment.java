@@ -35,13 +35,17 @@ public class MainMenuFragment extends BaseFragment implements View.OnClickListen
                 R.anim.button_pulse);
         view.findViewById(R.id.btn_start).startAnimation(pulseAnimation);
 
-        Animation titleAnimation = AnimationUtils.loadAnimation(getActivity(),
+        Animation titleAnimation1 = AnimationUtils.loadAnimation(getActivity(),
+                R.anim.subtitle_enter);
+        view.findViewById(R.id.img_title).startAnimation(titleAnimation1);
+
+       /* Animation titleAnimation = AnimationUtils.loadAnimation(getActivity(),
                 R.anim.title_enter);
         view.findViewById(R.id.GameTitle).startAnimation(titleAnimation);
 
         Animation subtitleAnimation = AnimationUtils.loadAnimation(getActivity(),
                 R.anim.subtitle_enter);
-        view.findViewById(R.id.GameSubtitle).startAnimation(subtitleAnimation);
+        view.findViewById(R.id.GameSubtitle).startAnimation(subtitleAnimation);*/
     }
 
     @Override

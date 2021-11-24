@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import dadm.scaffold.BaseFragment;
 import dadm.scaffold.R;
@@ -120,14 +121,14 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
     }
 
     private void playOrPause() {
-        Button button = (Button) getView().findViewById(R.id.btn_play_pause);
+        ImageButton button = (ImageButton) getView().findViewById(R.id.btn_play_pause);
         if (theGameEngine.isPaused()) {
             theGameEngine.resumeGame();
-            button.setText(R.string.pause);
+            //button.setText(R.string.pause);
         }
         else {
             theGameEngine.pauseGame();
-            button.setText(R.string.resume);
+            //button.setText(R.string.resume);
         }
     }
 }

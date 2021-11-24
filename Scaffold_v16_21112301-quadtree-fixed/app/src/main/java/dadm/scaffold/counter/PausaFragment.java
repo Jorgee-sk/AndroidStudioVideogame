@@ -1,19 +1,23 @@
 package dadm.scaffold.counter;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
+import dadm.scaffold.BaseFragment;
 import dadm.scaffold.R;
+import dadm.scaffold.ScaffoldActivity;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link PausaFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PausaFragment extends Fragment {
+public class PausaFragment extends BaseFragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -61,4 +65,49 @@ public class PausaFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_pausa, container, false);
     }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+
+
+        //BOTON EXIT---------------------------------------------------
+        ImageButton btnExit = (ImageButton) getView().findViewById(R.id.ExitButton);
+        btnExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                ((ScaffoldActivity)getActivity()).theGameEngine.stopGame();
+                ((ScaffoldActivity)getActivity()).doublenavigateBack(); //Cerramos fragmento propio y el de juego
+
+
+            }
+            });
+
+
+        //BOTON RESUME---------------------------------------------------
+        ImageButton btnResume = (ImageButton) getView().findViewById(R.id.ResumeButton);
+        btnResume.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                ((ScaffoldActivity)getActivity()).theGameEngine.resumeGame();
+                ((ScaffoldActivity)getActivity()).navigateBack(); //Cerramos fragmento propio y el de juego
+
+
+            }
+        });
+
+
+
+
+
+
+    }//FIN ON CREATE VIEW
+
+
+
 }
+
+

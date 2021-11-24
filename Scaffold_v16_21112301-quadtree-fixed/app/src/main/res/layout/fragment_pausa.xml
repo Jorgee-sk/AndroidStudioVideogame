@@ -1,14 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#4A000000"
     tools:context=".counter.PausaFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <ImageButton
+        android:id="@+id/ResumeButton"
+        android:layout_width="133dp"
+        android:layout_height="104dp"
+        android:background="#00FFFFFF"
+        android:contentDescription="ResumeButton"
+        android:scaleType="fitXY"
+        android:src="@android:drawable/checkbox_off_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.201"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <ImageButton
+        android:id="@+id/ExitButton"
+        android:layout_width="133dp"
+        android:layout_height="104dp"
+        android:background="#00FFFFFF"
+        android:contentDescription="ResumeButton"
+        android:scaleType="fitXY"
+        android:src="@android:drawable/checkbox_off_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.784"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.502" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Resume"
+        app:layout_constraintBottom_toBottomOf="@+id/ResumeButton"
+        app:layout_constraintEnd_toEndOf="@+id/ResumeButton"
+        app:layout_constraintStart_toStartOf="@+id/ResumeButton"
+        app:layout_constraintTop_toTopOf="@+id/ResumeButton" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="Exit"
+        android:text="Exit"
+        app:layout_constraintBottom_toBottomOf="@+id/ExitButton"
+        app:layout_constraintEnd_toEndOf="@+id/ExitButton"
+        app:layout_constraintStart_toStartOf="@+id/ExitButton"
+        app:layout_constraintTop_toTopOf="@+id/ExitButton" />
+</android.support.constraint.ConstraintLayout>

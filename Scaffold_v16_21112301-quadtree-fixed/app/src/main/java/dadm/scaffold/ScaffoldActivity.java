@@ -8,6 +8,8 @@ import android.view.View;
 
 import dadm.scaffold.counter.GameFragment;
 import dadm.scaffold.counter.MainMenuFragment;
+import dadm.scaffold.counter.PausaFragment;
+import dadm.scaffold.engine.GameEngine;
 import dadm.scaffold.sound.SoundManager;
 
 public class ScaffoldActivity extends AppCompatActivity {
@@ -15,6 +17,8 @@ public class ScaffoldActivity extends AppCompatActivity {
     private static final String TAG_FRAGMENT = "content";
 
     private SoundManager soundManager;
+
+    public GameEngine theGameEngine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +49,15 @@ public class ScaffoldActivity extends AppCompatActivity {
                 .addToBackStack(null)
                 .commit();
     }
+    public void addFragment(BaseFragment dst) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.container, dst, TAG_FRAGMENT)
+                .addToBackStack(null)
+                .commit();
+    }
+
+
 
     @Override
     public void onBackPressed() {
@@ -56,6 +69,11 @@ public class ScaffoldActivity extends AppCompatActivity {
 
     public void navigateBack() {
         // Do a push on the navigation history
+        super.onBackPressed();
+    }
+    public void doublenavigateBack() {
+        // Do a push on the navigation history
+        super.onBackPressed();
         super.onBackPressed();
     }
 

@@ -22,7 +22,7 @@ import dadm.scaffold.space.SpaceShipPlayer;
 
 
 public class GameFragment extends BaseFragment implements View.OnClickListener {
-    private GameEngine theGameEngine;
+    //private GameEngine theGameEngine;
 
     public GameFragment() {
     }
@@ -46,13 +46,13 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
                 //se elimina el listener en cuanto es llamado
                 observer.removeOnGlobalLayoutListener(this);
                 GameView gameView = (GameView) getView().findViewById(R.id.gameView);
-                theGameEngine = new GameEngine(getActivity(), gameView);
-                theGameEngine.setSoundManager(getScaffoldActivity().getSoundManager());
-                theGameEngine.setTheInputController(new JoystickInputController(getView()));
-                theGameEngine.addGameObject(new SpaceShipPlayer(theGameEngine));
-                theGameEngine.addGameObject(new FramesPerSecondCounter(theGameEngine));
-                theGameEngine.addGameObject(new GameController(theGameEngine));
-                theGameEngine.startGame();
+                ((ScaffoldActivity)getActivity()).theGameEngine = new GameEngine(getActivity(), gameView);
+                ((ScaffoldActivity)getActivity()).theGameEngine.setSoundManager(getScaffoldActivity().getSoundManager());
+                ((ScaffoldActivity)getActivity()).theGameEngine.setTheInputController(new JoystickInputController(getView()));
+                ((ScaffoldActivity)getActivity()).theGameEngine.addGameObject(new SpaceShipPlayer( ((ScaffoldActivity)getActivity()).theGameEngine));
+                ((ScaffoldActivity)getActivity()).theGameEngine.addGameObject(new FramesPerSecondCounter( ((ScaffoldActivity)getActivity()).theGameEngine));
+                ((ScaffoldActivity)getActivity()).theGameEngine.addGameObject(new GameController( ((ScaffoldActivity)getActivity()).theGameEngine));
+                ((ScaffoldActivity)getActivity()).theGameEngine.startGame();
             }
         });
 
@@ -69,7 +69,7 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
     @Override
     public void onPause() {
         super.onPause();
-        if (theGameEngine.isRunning()){
+        if ( ((ScaffoldActivity)getActivity()).theGameEngine.isRunning()){
             pauseGameAndShowPauseDialog();
         }
     }
@@ -77,12 +77,12 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        theGameEngine.stopGame();
+        ((ScaffoldActivity)getActivity()).theGameEngine.stopGame();
     }
 
     @Override
     public boolean onBackPressed() {
-        if (theGameEngine.isRunning()) {
+        if ( ((ScaffoldActivity)getActivity()).theGameEngine.isRunning()) {
             pauseGameAndShowPauseDialog();
             return true;
         }
@@ -90,7 +90,11 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
     }
 
     private void pauseGameAndShowPauseDialog() {
-        theGameEngine.pauseGame();
+        ((ScaffoldActivity)getActivity()).theGameEngine.pauseGame();
+
+        ((ScaffoldActivity)getActivity()).addFragment(new PausaFragment()); //CREAMOS FRAGMENTO DE PAUSA
+
+/*
         new AlertDialog.Builder(getActivity())
                 .setTitle(R.string.pause_dialog_title)
                 .setMessage(R.string.pause_dialog_message)
@@ -98,36 +102,38 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
-                        theGameEngine.resumeGame();
+                        ((ScaffoldActivity)getActivity()).theGameEngine.resumeGame();
                     }
                 })
                 .setNegativeButton(R.string.stop, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
-                        theGameEngine.stopGame();
+                        ((ScaffoldActivity)getActivity()).theGameEngine.stopGame();
                         ((ScaffoldActivity)getActivity()).navigateBack();
                     }
                 })
                 .setOnCancelListener(new DialogInterface.OnCancelListener() {
                     @Override
                     public void onCancel(DialogInterface dialog) {
-                        theGameEngine.resumeGame();
+                        ((ScaffoldActivity)getActivity()).theGameEngine.resumeGame();
                     }
                 })
                 .create()
                 .show();
+*/
+
 
     }
 
     private void playOrPause() {
         ImageButton button = (ImageButton) getView().findViewById(R.id.btn_play_pause);
-        if (theGameEngine.isPaused()) {
-            theGameEngine.resumeGame();
+        if ( ((ScaffoldActivity)getActivity()).theGameEngine.isPaused()) {
+            ((ScaffoldActivity)getActivity()).theGameEngine.resumeGame();
             //button.setText(R.string.pause);
         }
         else {
-            theGameEngine.pauseGame();
+            ((ScaffoldActivity)getActivity()).theGameEngine.pauseGame();
             //button.setText(R.string.resume);
         }
     }

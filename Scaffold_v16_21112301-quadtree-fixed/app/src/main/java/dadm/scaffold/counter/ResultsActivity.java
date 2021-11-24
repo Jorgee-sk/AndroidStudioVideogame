@@ -3,6 +3,8 @@ package dadm.scaffold.counter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import dadm.scaffold.R;
+
 public class ResultsActivity extends AppCompatActivity {
 
     @Override

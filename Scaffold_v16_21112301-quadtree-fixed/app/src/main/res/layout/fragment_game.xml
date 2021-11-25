@@ -21,7 +21,9 @@
         android:id="@+id/include"
         layout="@layout/view_joystick"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
 
     <ImageButton
         android:id="@+id/btn_play_pause"
@@ -36,5 +38,86 @@
         android:src="@drawable/ic_baseline_pause_circle_outline_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/score_title"
+        android:layout_width="63dp"
+        android:layout_height="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:text="@string/score"
+        android:textColor="@android:color/background_dark"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.046" />
+
+    <TextView
+        android:id="@+id/score_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/score_title"
+        android:layout_alignLeft="@+id/score_title"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:text="000000"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/score_title"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.045" />
+
+    <LinearLayout
+        android:id="@+id/lives_value"
+        android:layout_width="206dp"
+        android:layout_height="61dp"
+        android:layout_below="@+id/lives_title"
+        android:layout_alignLeft="@+id/lives_title"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.078"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/gameView"
+        app:layout_constraintVertical_bias="0.22">
+
+        <ImageView
+            android:layout_width="69dp"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/avioningame" />
+
+        <ImageView
+            android:layout_width="69dp"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/avioningame" />
+
+        <ImageView
+            android:layout_width="69dp"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/avioningame" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/lives_title"
+        android:layout_width="67dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/score_value"
+        android:layout_alignLeft="@+id/score_value"
+        android:text="@string/lives"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.046"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.157" />
+
 
 </android.support.constraint.ConstraintLayout>

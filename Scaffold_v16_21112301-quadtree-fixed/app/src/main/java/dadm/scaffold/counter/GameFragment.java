@@ -16,7 +16,9 @@ import dadm.scaffold.ScaffoldActivity;
 import dadm.scaffold.engine.FramesPerSecondCounter;
 import dadm.scaffold.engine.GameEngine;
 import dadm.scaffold.engine.GameView;
+import dadm.scaffold.engine.LivesCounter;
 import dadm.scaffold.engine.ParallaxBackground;
+import dadm.scaffold.engine.ScoreGameObject;
 import dadm.scaffold.input.JoystickInputController;
 import dadm.scaffold.space.GameController;
 import dadm.scaffold.space.SpaceShipPlayer;
@@ -52,7 +54,11 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
                 ((ScaffoldActivity)getActivity()).theGameEngine.setTheInputController(new JoystickInputController(getView()));
                 ((ScaffoldActivity)getActivity()).theGameEngine.addGameObject(new ParallaxBackground(((ScaffoldActivity)getActivity()).theGameEngine,
                         20,R.drawable.fondo));
-                ((ScaffoldActivity)getActivity()).theGameEngine.addGameObject(new SpaceShipPlayer( ((ScaffoldActivity)getActivity()).theGameEngine));
+                ((ScaffoldActivity)getActivity()).theGameEngine.addGameObject(new ScoreGameObject(
+                        getView(),R.id.score_value));
+                ((ScaffoldActivity)getActivity()).theGameEngine.addGameObject(new LivesCounter(
+                        getView(),R.id.lives_value));
+                //((ScaffoldActivity)getActivity()).theGameEngine.addGameObject(new SpaceShipPlayer( ((ScaffoldActivity)getActivity()).theGameEngine));
                 ((ScaffoldActivity)getActivity()).theGameEngine.addGameObject(new FramesPerSecondCounter( ((ScaffoldActivity)getActivity()).theGameEngine));
                 ((ScaffoldActivity)getActivity()).theGameEngine.addGameObject(new GameController( ((ScaffoldActivity)getActivity()).theGameEngine));
                 ((ScaffoldActivity)getActivity()).theGameEngine.startGame();

@@ -51,7 +51,7 @@ public class GameEngine {
 
         quadTree.setArea(new Rect(0, 0, width, height));
 
-        this.pixelFactor = this.height / 400d;
+        this.pixelFactor = this.height / 1000d;
     }
 
     public void setTheInputController(InputController inputController) {

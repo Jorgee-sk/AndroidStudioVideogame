@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import java.util.ArrayList;
 import java.util.List;
 
+import dadm.scaffold.R;
 import dadm.scaffold.engine.GameEngine;
 import dadm.scaffold.engine.GameObject;
 
@@ -18,7 +19,7 @@ public class GameController extends GameObject {
     public GameController(GameEngine gameEngine) {
         // We initialize the pool of items now
         for (int i=0; i<10; i++) {
-            asteroidPool.add(new Asteroid(this, gameEngine));
+            asteroidPool.add(new KamikazeBird(this, gameEngine));
         }
     }
 
@@ -37,6 +38,8 @@ public class GameController extends GameObject {
             // Spawn a new enemy
             Asteroid a = asteroidPool.remove(0);
             a.init(gameEngine);
+
+
             gameEngine.addGameObject(a);
             enemiesSpawned++;
             return;
@@ -51,4 +54,7 @@ public class GameController extends GameObject {
     public void returnToPool(Asteroid asteroid) {
         asteroidPool.add(asteroid);
     }
+
+
+
 }

@@ -27,13 +27,15 @@ public final class SoundManager {
 	private SoundPool soundPool;
 	private MediaPlayer bgPlayer;
 
+
+
 	private boolean soundEnabled;
 	private boolean musicEnabled;
 
 	public SoundManager(Context context) {
 		this.context = context;
-		SharedPreferences prefs =
-				PreferenceManager.getDefaultSharedPreferences(context);
+		SharedPreferences prefs = context.getSharedPreferences("soundManager",0);
+				//PreferenceManager.getDefaultSharedPreferences(context);
 		soundEnabled = prefs.getBoolean(SOUNDS_PREF_KEY, true);
 		musicEnabled = prefs.getBoolean(MUSIC_PREF_KEY, true);
 
@@ -65,8 +67,9 @@ public final class SoundManager {
 		else {
 			unloadSounds();
 		}
+
 		// Save it to preferences
-		PreferenceManager.getDefaultSharedPreferences(context).edit()
+		context.getSharedPreferences("soundManager",0).edit()
 				.putBoolean(SOUNDS_PREF_KEY, soundEnabled)
 				.commit();
 	}
@@ -81,7 +84,7 @@ public final class SoundManager {
 			unloadMusic();
 		}
 		// Save it to preferences
-		PreferenceManager.getDefaultSharedPreferences(context).edit()
+		context.getSharedPreferences("soundManager",0).edit()
 				.putBoolean(MUSIC_PREF_KEY, musicEnabled)
 				.commit();
 	}

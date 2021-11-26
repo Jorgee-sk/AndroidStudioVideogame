@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -22,9 +23,10 @@ import dadm.scaffold.sound.SoundManager;
 
 public class MainMenuFragment extends BaseFragment implements View.OnClickListener {
 
+
     private int arrayPlanes[] = new int[3];
     private int imagenActual = 0;
-
+    SharedPreferences settings2;
 
     public MainMenuFragment() {
     }
@@ -40,9 +42,33 @@ public class MainMenuFragment extends BaseFragment implements View.OnClickListen
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        settings2 = getActivity().getSharedPreferences("soundManager",0);
+
         view.findViewById(R.id.btn_start).setOnClickListener(this);
-        view.findViewById(R.id.buttonMuteSound).setOnClickListener(this);
-        view.findViewById(R.id.buttonMuteMusic).setOnClickListener(this);
+
+        ImageView btnSound = (ImageView) getView().findViewById(R.id.imageView3);
+        ImageView btnMusic = (ImageView) getView().findViewById(R.id.imageView);
+
+
+        if(settings2.getBoolean("Sound",true)){
+
+            btnSound.setImageResource(R.drawable.ic_baseline_volume_up_24);
+
+        }else if(settings2.getBoolean("Sound",false)){
+
+            btnSound.setImageResource(R.drawable.ic_baseline_volume_off_24);
+        }
+
+        if(settings2.getBoolean("Music",true)){
+
+            btnMusic.setImageResource(R.drawable.notamusical);
+
+        }else if(settings2.getBoolean("Music",false)){
+
+            btnMusic.setImageResource(R.drawable.notamusicalmuted);
+        }
+
+
 
         SharedPreferences settings = getActivity().getSharedPreferences("planeSelected", 0);
 
@@ -117,6 +143,63 @@ public class MainMenuFragment extends BaseFragment implements View.OnClickListen
             }
         });
 
+        //BOTON SILENCIAR FX----------------------------------------------------------
+        ImageButton btnMuteFX = (ImageButton) getView().findViewById(R.id.buttonMuteSound);
+        btnMuteFX.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (view.getId() == R.id.buttonMuteSound) {
+                    SoundManager soundManager = ((ScaffoldActivity) getActivity()).getSoundManager();
+                    soundManager.toggleSoundStatus();
+                    if (soundManager.getSoundStatus()) {
+
+                        btnSound.setImageResource(R.drawable.ic_baseline_volume_up_24);
+
+                        SharedPreferences.Editor editor = settings.edit();
+                        editor.putBoolean("Sound", true);
+                        editor.commit();
+                    } else {
+                        btnSound.setImageResource(R.drawable.ic_baseline_volume_off_24);
+
+                        SharedPreferences.Editor editor = settings.edit();
+                        editor.putBoolean("Sound", false);
+                        editor.commit();
+                    }
+
+                }
+
+            }
+        });
+
+        //BOTON SILENCIAR MUSICA--------------------------------------------
+        ImageButton btnMuteMusic = (ImageButton) getView().findViewById(R.id.buttonMuteMusic);
+        btnMuteMusic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (view.getId() == R.id.buttonMuteMusic) {
+                    SoundManager soundManager = ((ScaffoldActivity) getActivity()).getSoundManager();
+                    soundManager.toggleMusicStatus();
+                    //updateMusicButton();
+                    if (soundManager.getMusicStatus()) {
+                        btnMusic.setImageResource(R.drawable.notamusical);
+
+                        SharedPreferences.Editor editor = settings.edit();
+                        editor.putBoolean("Music", true);
+                        editor.commit();
+                    } else {
+                        btnMusic.setImageResource(R.drawable.notamusicalmuted);
+
+                        SharedPreferences.Editor editor = settings.edit();
+                        editor.putBoolean("Music", false);
+                        editor.commit();
+                    }
+
+                }
+
+            }
+        });
 
 
        /* Animation titleAnimation = AnimationUtils.loadAnimation(getActivity(),
@@ -133,36 +216,44 @@ public class MainMenuFragment extends BaseFragment implements View.OnClickListen
         if (v.getId() == R.id.btn_start){
             ((ScaffoldActivity) getActivity()).startGame();
         }
-        else if (v.getId() == R.id.buttonMuteSound) {
-            SoundManager soundManager = ((ScaffoldActivity) getActivity()).getSoundManager();
-            soundManager.toggleMusicStatus();
-            updateSoundAndMusicButtons();
-        }
-        else if (v.getId() == R.id.buttonMuteMusic) {
-            SoundManager soundManager = ((ScaffoldActivity) getActivity()).getSoundManager();
-            soundManager.toggleSoundStatus();
-            updateSoundAndMusicButtons();
-        }
 
     }
 
-    private void updateSoundAndMusicButtons() {
+    private void updateSoundButtons() {
         SoundManager soundManager = ((ScaffoldActivity) getActivity()).getSoundManager();
 
-        ImageView btnMusic = (ImageView) getView().findViewById(R.id.imageView3);
+        ImageView btnSound = (ImageView) getView().findViewById(R.id.imageView3);
         if (soundManager.getMusicStatus()) {
-            btnMusic.setImageResource(R.drawable.ic_baseline_volume_up_24);
-        }
-        else {
-            btnMusic.setImageResource(R.drawable.ic_baseline_volume_off_24);
-        }
+            btnSound.setImageResource(R.drawable.ic_baseline_volume_up_24);
 
-        ImageView btnSounds = (ImageView) getView().findViewById(R.id.imageView);
+            SharedPreferences.Editor editor = settings2.edit();
+            editor.putBoolean("Sound", true);
+            editor.commit();
+        } else {
+            btnSound.setImageResource(R.drawable.ic_baseline_volume_off_24);
+
+            SharedPreferences.Editor editor = settings2.edit();
+            editor.putBoolean("Sound", false);
+            editor.commit();
+        }
+    }
+    private void updateMusicButtons(){
+        SoundManager soundManager = ((ScaffoldActivity) getActivity()).getSoundManager();
+
+        ImageView btnMusic = (ImageView) getView().findViewById(R.id.imageView);
         if (soundManager.getSoundStatus()) {
-            btnSounds.setImageResource(R.drawable.notamusical);
+            btnMusic.setImageResource(R.drawable.notamusical);
+
+            SharedPreferences.Editor editor = settings2.edit();
+            editor.putBoolean("Music", true);
+            editor.commit();
         }
         else {
-            btnSounds.setImageResource(R.drawable.notamusicalmuted);
+            btnMusic.setImageResource(R.drawable.notamusicalmuted);
+
+            SharedPreferences.Editor editor = settings2.edit();
+            editor.putBoolean("Music", false);
+            editor.commit();
         }
     }
 

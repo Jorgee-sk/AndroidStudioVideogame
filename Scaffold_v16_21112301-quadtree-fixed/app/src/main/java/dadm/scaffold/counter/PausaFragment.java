@@ -27,7 +27,7 @@ public class PausaFragment extends BaseFragment /*implements View.OnClickListene
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    SharedPreferences settings;
+
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -74,24 +74,22 @@ public class PausaFragment extends BaseFragment /*implements View.OnClickListene
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        //super.onViewCreated(view, savedInstanceState);
-        //view.findViewById(R.id.buttonSound).setOnClickListener(this);
-        //view.findViewById(R.id.buttonSound2).setOnClickListener(this);
 
 
-        settings = getActivity().getSharedPreferences("soundManager",0);
+
+        SharedPreferences settings = getActivity().getSharedPreferences("soundManager",0);
         ImageView btnSound = (ImageView) getView().findViewById(R.id.imageSoundFX);
         ImageView btnMusic = (ImageView) getView().findViewById(R.id.imageMusic);
 
         if(settings.getBoolean("Sound", true)){
             btnSound.setImageResource(R.drawable.ic_baseline_volume_up_24);
-        }else {
+        }else{
             btnSound.setImageResource(R.drawable.ic_baseline_volume_off_24);
         }
 
         if(settings.getBoolean("Music",true)){
             btnMusic.setImageResource(R.drawable.notamusical);
-        }else {
+        }else{
             btnMusic.setImageResource(R.drawable.notamusicalmuted);
         }
 
@@ -126,7 +124,6 @@ public class PausaFragment extends BaseFragment /*implements View.OnClickListene
                 if (view.getId() == R.id.buttonSound) {
                     SoundManager soundManager = ((ScaffoldActivity) getActivity()).getSoundManager();
                     soundManager.toggleSoundStatus();
-                    //updateSoundButton();
                     if (soundManager.getSoundStatus()) {
 
                         btnSound.setImageResource(R.drawable.ic_baseline_volume_up_24);
@@ -156,7 +153,6 @@ public class PausaFragment extends BaseFragment /*implements View.OnClickListene
                 if (view.getId() == R.id.buttonSound2) {
                     SoundManager soundManager = ((ScaffoldActivity) getActivity()).getSoundManager();
                     soundManager.toggleMusicStatus();
-                    //updateMusicButton();
                     if (soundManager.getMusicStatus()) {
                         btnMusic.setImageResource(R.drawable.notamusical);
 
@@ -195,7 +191,7 @@ public class PausaFragment extends BaseFragment /*implements View.OnClickListene
 
     }*/
 
-    private void updateSoundButton() {
+   /* private void updateSoundButton() {
         SoundManager soundManager = ((ScaffoldActivity) getActivity()).getSoundManager();
 
         ImageView btnSound = (ImageView) getView().findViewById(R.id.imageSoundFX);
@@ -233,7 +229,7 @@ public class PausaFragment extends BaseFragment /*implements View.OnClickListene
            editor.commit();
        }
    }
-
+    */
 
 }
 

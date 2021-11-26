@@ -26,7 +26,6 @@ public class MainMenuFragment extends BaseFragment implements View.OnClickListen
 
     private int arrayPlanes[] = new int[3];
     private int imagenActual = 0;
-    SharedPreferences settings2;
 
     public MainMenuFragment() {
     }
@@ -42,7 +41,8 @@ public class MainMenuFragment extends BaseFragment implements View.OnClickListen
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        settings2 = getActivity().getSharedPreferences("soundManager",0);
+        SharedPreferences settings2 = getActivity().getSharedPreferences("soundManager",0);
+        SoundManager soundManager = ((ScaffoldActivity) getActivity()).getSoundManager();
 
         view.findViewById(R.id.btn_start).setOnClickListener(this);
 
@@ -54,7 +54,7 @@ public class MainMenuFragment extends BaseFragment implements View.OnClickListen
 
             btnSound.setImageResource(R.drawable.ic_baseline_volume_up_24);
 
-        }else if(settings2.getBoolean("Sound",false)){
+        }else{
 
             btnSound.setImageResource(R.drawable.ic_baseline_volume_off_24);
         }
@@ -63,11 +63,10 @@ public class MainMenuFragment extends BaseFragment implements View.OnClickListen
 
             btnMusic.setImageResource(R.drawable.notamusical);
 
-        }else if(settings2.getBoolean("Music",false)){
+        }else{
 
             btnMusic.setImageResource(R.drawable.notamusicalmuted);
         }
-
 
 
         SharedPreferences settings = getActivity().getSharedPreferences("planeSelected", 0);
@@ -150,19 +149,18 @@ public class MainMenuFragment extends BaseFragment implements View.OnClickListen
             public void onClick(View view) {
 
                 if (view.getId() == R.id.buttonMuteSound) {
-                    SoundManager soundManager = ((ScaffoldActivity) getActivity()).getSoundManager();
+
                     soundManager.toggleSoundStatus();
                     if (soundManager.getSoundStatus()) {
-
                         btnSound.setImageResource(R.drawable.ic_baseline_volume_up_24);
 
-                        SharedPreferences.Editor editor = settings.edit();
+                        SharedPreferences.Editor editor = settings2.edit();
                         editor.putBoolean("Sound", true);
                         editor.commit();
                     } else {
                         btnSound.setImageResource(R.drawable.ic_baseline_volume_off_24);
 
-                        SharedPreferences.Editor editor = settings.edit();
+                        SharedPreferences.Editor editor = settings2.edit();
                         editor.putBoolean("Sound", false);
                         editor.commit();
                     }
@@ -179,19 +177,18 @@ public class MainMenuFragment extends BaseFragment implements View.OnClickListen
             public void onClick(View view) {
 
                 if (view.getId() == R.id.buttonMuteMusic) {
-                    SoundManager soundManager = ((ScaffoldActivity) getActivity()).getSoundManager();
+
                     soundManager.toggleMusicStatus();
-                    //updateMusicButton();
                     if (soundManager.getMusicStatus()) {
                         btnMusic.setImageResource(R.drawable.notamusical);
 
-                        SharedPreferences.Editor editor = settings.edit();
+                        SharedPreferences.Editor editor = settings2.edit();
                         editor.putBoolean("Music", true);
                         editor.commit();
                     } else {
                         btnMusic.setImageResource(R.drawable.notamusicalmuted);
 
-                        SharedPreferences.Editor editor = settings.edit();
+                        SharedPreferences.Editor editor = settings2.edit();
                         editor.putBoolean("Music", false);
                         editor.commit();
                     }
@@ -219,7 +216,7 @@ public class MainMenuFragment extends BaseFragment implements View.OnClickListen
 
     }
 
-    private void updateSoundButtons() {
+   /* private void updateSoundButtons() {
         SoundManager soundManager = ((ScaffoldActivity) getActivity()).getSoundManager();
 
         ImageView btnSound = (ImageView) getView().findViewById(R.id.imageView3);
@@ -255,6 +252,6 @@ public class MainMenuFragment extends BaseFragment implements View.OnClickListen
             editor.putBoolean("Music", false);
             editor.commit();
         }
-    }
+    }**/
 
 }

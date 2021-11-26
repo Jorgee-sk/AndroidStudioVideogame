@@ -10,7 +10,7 @@ public class ScoreGameObject extends GameObject{
     private final TextView mText;
     private int mPoints;
     private boolean mPointsHaveChanged;
-    private static final int POINTS_LOSS_PER_ASTEROID_MISSED = 1;
+    private static final int POINTS_LOSS_PER_ASTEROID_MISSED = 0;
     private static final int POINTS_GAINED_PER_ASTEROID_HIT = 50;
 
     public ScoreGameObject(View view, int viewResId) {

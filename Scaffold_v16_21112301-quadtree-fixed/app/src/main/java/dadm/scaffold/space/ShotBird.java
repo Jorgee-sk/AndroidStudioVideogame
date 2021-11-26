@@ -4,6 +4,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import dadm.scaffold.R;
 import dadm.scaffold.engine.GameEngine;
@@ -20,7 +21,7 @@ public class ShotBird extends Asteroid{
     List<BulletEnemy> bullets = new ArrayList<BulletEnemy>();
 
     private static final int INITIAL_BULLET_POOL_AMOUNT = 6;
-    private static final long TIME_BETWEEN_BULLETS = 800;
+    private static long TIME_BETWEEN_BULLETS = 800;
 
     private long timeSinceLastFire;
 
@@ -84,6 +85,7 @@ public class ShotBird extends Asteroid{
 
         currentMillis += elapsedMillis;
 
+        TIME_BETWEEN_BULLETS = new Random().nextInt((1500 - 500) + 1) + 500;
         long waveTimestamp = bulletsSpawned*TIME_BETWEEN_BULLETS;
 
         if (currentMillis > waveTimestamp && gameController.mState != GameController.GameControllerState.StoppingWave) {

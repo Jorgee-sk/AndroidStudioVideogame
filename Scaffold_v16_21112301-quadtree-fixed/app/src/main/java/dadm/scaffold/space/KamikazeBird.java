@@ -4,6 +4,7 @@ import dadm.scaffold.R;
 import dadm.scaffold.engine.GameEngine;
 import dadm.scaffold.engine.ScreenGameObject;
 import dadm.scaffold.engine.Sprite;
+import dadm.scaffold.sound.GameEvent;
 
 public class KamikazeBird extends Asteroid {
 
@@ -72,7 +73,6 @@ public class KamikazeBird extends Asteroid {
     public void onCollision(GameEngine gameEngine, ScreenGameObject otherObject) {
 
     }
-
 
 
 }

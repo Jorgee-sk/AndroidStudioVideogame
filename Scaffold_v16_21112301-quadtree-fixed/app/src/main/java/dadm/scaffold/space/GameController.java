@@ -13,14 +13,16 @@ public class GameController extends GameObject {
 
     private static final int TIME_BETWEEN_ENEMIES = 500;
     private long currentMillis;
-    private List<Asteroid> asteroidPool = new ArrayList<Asteroid>();
     private int enemiesSpawned;
+    private List<Asteroid> asteroidPool = new ArrayList<Asteroid>();
 
     public GameController(GameEngine gameEngine) {
         // We initialize the pool of items now
         for (int i=0; i<10; i++) {
             asteroidPool.add(new KamikazeBird(this, gameEngine));
+            asteroidPool.add(new ShotBird(this, gameEngine));
         }
+
     }
 
     @Override

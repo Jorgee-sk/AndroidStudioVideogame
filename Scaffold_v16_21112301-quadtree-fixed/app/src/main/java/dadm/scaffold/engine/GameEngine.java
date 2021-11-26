@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import dadm.scaffold.ScaffoldActivity;
 import dadm.scaffold.input.InputController;
 import dadm.scaffold.sound.GameEvent;
 import dadm.scaffold.sound.SoundManager;
@@ -32,12 +33,12 @@ public class GameEngine {
     public int width;
     public int height;
     public double pixelFactor;
-    public Activity mainActivity;
+    public ScaffoldActivity mainActivity;
     private int mNumLives = 0;
 
 
 
-    public GameEngine(Activity activity, GameView gameView) {
+    public GameEngine(ScaffoldActivity activity, GameView gameView) {
         mainActivity = activity;
 
         theGameView = gameView;

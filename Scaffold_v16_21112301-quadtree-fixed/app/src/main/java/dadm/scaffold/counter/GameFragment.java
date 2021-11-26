@@ -49,7 +49,7 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
                 //se elimina el listener en cuanto es llamado
                 observer.removeOnGlobalLayoutListener(this);
                 GameView gameView = (GameView) getView().findViewById(R.id.gameView);
-                ((ScaffoldActivity)getActivity()).theGameEngine = new GameEngine(getActivity(), gameView);
+                ((ScaffoldActivity)getActivity()).theGameEngine = new GameEngine((ScaffoldActivity)getActivity(), gameView);
                 ((ScaffoldActivity)getActivity()).theGameEngine.setSoundManager(getScaffoldActivity().getSoundManager());
                 ((ScaffoldActivity)getActivity()).theGameEngine.setTheInputController(new JoystickInputController(getView()));
                 ((ScaffoldActivity)getActivity()).theGameEngine.addGameObject(new ParallaxBackground(((ScaffoldActivity)getActivity()).theGameEngine,

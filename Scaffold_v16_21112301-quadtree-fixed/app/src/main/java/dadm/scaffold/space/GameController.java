@@ -1,11 +1,13 @@
 package dadm.scaffold.space;
 
+import android.app.Activity;
 import android.graphics.Canvas;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import dadm.scaffold.R;
+import dadm.scaffold.ScaffoldActivity;
 import dadm.scaffold.engine.GameEngine;
 import dadm.scaffold.engine.GameObject;
 import dadm.scaffold.sound.GameEvent;
@@ -98,7 +100,8 @@ public class GameController extends GameObject {
             else {
                 mNumLifes--;
                 gameEngine.onGameEvent(GameEvent.LifeLost);
-                SpaceShipPlayer newLife = new SpaceShipPlayer(this,gameEngine);
+                //gameEngine.mainActivity.settings3 = gameEngine.mainActivity.getSharedPreferences("soundManager",0);
+                SpaceShipPlayer newLife = new SpaceShipPlayer(this,gameEngine,gameEngine.mainActivity.skin);
                 gameEngine.addGameObject(newLife);
                 newLife.startGame();
                 // We wait to start spawning more enemies

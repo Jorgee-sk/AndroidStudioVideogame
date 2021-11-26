@@ -26,7 +26,7 @@ public class MainMenuFragment extends BaseFragment implements View.OnClickListen
 
     private int arrayPlanes[] = new int[3];
     private int imagenActual = 0;
-    SharedPreferences settings2;
+    public SharedPreferences settings2;
 
     public MainMenuFragment() {
     }
@@ -82,11 +82,18 @@ public class MainMenuFragment extends BaseFragment implements View.OnClickListen
 
         //view.findViewById(R.id.imageView2).startAnimation(pulseAnimation);
 
-        arrayPlanes[0]= R.drawable.avion;
+        arrayPlanes[0]= R.drawable.avioningame;
         arrayPlanes[1]= R.drawable.ave1;
         arrayPlanes[2]= R.drawable.ave2;
 
-        imagenActual = settings.getInt("img1",0);
+        imagenActual = settings.getInt("img1",R.drawable.avioningame);
+        if(imagenActual == R.drawable.avioningame){
+            imagenActual = 0;
+        }else if(R.drawable.ave1 == imagenActual){
+            imagenActual = 1;
+        }else{
+            imagenActual = 2;
+        }
 
         ImageView imgAvion = (ImageView) getView().findViewById(R.id.imageView2);
         ImageButton btnDesplazarDcha = (ImageButton) getView().findViewById(R.id.buttonAvion);
@@ -94,7 +101,7 @@ public class MainMenuFragment extends BaseFragment implements View.OnClickListen
 
         if(settings.contains("img1")){
 
-            imgAvion.setImageResource(arrayPlanes[settings.getInt("img1",0)]);
+            imgAvion.setImageResource(settings.getInt("img1",R.drawable.avioningame));
 
         }
         TypedValue typedvalue = new TypedValue();
@@ -115,7 +122,7 @@ public class MainMenuFragment extends BaseFragment implements View.OnClickListen
 
                 }
                 SharedPreferences.Editor editor = settings.edit();
-                editor.putInt("img1", imagenActual);
+                editor.putInt("img1", arrayPlanes[imagenActual]);
                 // Commit the edits!
                 editor.commit();
             }
@@ -137,7 +144,7 @@ public class MainMenuFragment extends BaseFragment implements View.OnClickListen
 
                 }
                 SharedPreferences.Editor editor = settings.edit();
-                editor.putInt("img1", imagenActual);
+                editor.putInt("img1", arrayPlanes[imagenActual]);
                 // Commit the edits!
                 editor.commit();
             }

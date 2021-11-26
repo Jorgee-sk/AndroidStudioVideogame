@@ -1,5 +1,6 @@
 package dadm.scaffold;
 
+import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
@@ -20,6 +21,10 @@ public class ScaffoldActivity extends AppCompatActivity {
 
     public GameEngine theGameEngine;
 
+    public SharedPreferences settings3;
+
+    public int skin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,8 +34,11 @@ public class ScaffoldActivity extends AppCompatActivity {
                     .add(R.id.container, new MainMenuFragment(), TAG_FRAGMENT)
                     .commit();
         }
+
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
         soundManager = new SoundManager(getApplicationContext());
+
+        skin = R.drawable.avioningame;
     }
 
     public SoundManager getSoundManager() {
@@ -40,6 +48,8 @@ public class ScaffoldActivity extends AppCompatActivity {
     public void startGame() {
         // Navigate the the game fragment, which makes the start automatically
         navigateToFragment( new GameFragment());
+        settings3 = getSharedPreferences("planeSelected",0);
+        skin = settings3.getInt("img1",R.drawable.avion);
     }
 
     private void navigateToFragment(BaseFragment dst) {

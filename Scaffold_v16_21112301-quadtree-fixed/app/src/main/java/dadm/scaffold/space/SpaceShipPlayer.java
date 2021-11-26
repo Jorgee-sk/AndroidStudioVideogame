@@ -15,29 +15,29 @@ import dadm.scaffold.sound.GameEvent;
 public class SpaceShipPlayer extends Sprite {
 
     private static final int INITIAL_BULLET_POOL_AMOUNT = 6;
-    private static final long TIME_BETWEEN_BULLETS = 250;
+    private static final long TIME_BETWEEN_BULLETS = 500;
     List<Bullet> bullets = new ArrayList<Bullet>();
     private long timeSinceLastFire;
-
+    double speedFactor;
     private long lastFrameChangeTime = 0;
     private int frameLengthInMillisecond = 500;
     private int nextResourceIntegerId = 0;
 
     private int maxX;
     private int maxY;
-    private double speedFactor;
+
+    private GameController gameController;
 
 
-    public SpaceShipPlayer(GameEngine gameEngine){
-
-
-
+    public SpaceShipPlayer(GameController gameController,GameEngine gameEngine){
 
         super(gameEngine,R.drawable.avioningame,112,100);
         nextResourceIntegerId = R.drawable.avioningame;
         speedFactor = pixelFactor * 100d / 400d; // We want to move at 100px per second on a 400px tall screen
         maxX = gameEngine.width - width;
         maxY = gameEngine.height - height;
+
+        this.gameController = gameController;
 
         initBulletPool(gameEngine);
     }
@@ -115,6 +115,33 @@ public class SpaceShipPlayer extends Sprite {
             a.removeObject(gameEngine);
             gameEngine.onGameEvent(GameEvent.SpaceshipHit);
         }
+        if (otherObject instanceof BulletEnemy) {
+            gameEngine.removeGameObject(this);
+            //gameEngine.stopGame();
+            BulletEnemy a = (BulletEnemy) otherObject;
+            a.removeObject(gameEngine);
+            gameEngine.onGameEvent(GameEvent.SpaceshipHit);
+        }
+
+        if (otherObject instanceof BulletEnemy || otherObject instanceof Asteroid) {
+
+            int auxSize = gameController.enemyBullets.size();
+            for(int i = 0;i < auxSize;i++){
+
+
+
+                    gameController.enemyBullets.get(0).removeObject(gameEngine);
+
+
+
+            }
+
+
+        }
+
+
+
+
     }
 
     @Override

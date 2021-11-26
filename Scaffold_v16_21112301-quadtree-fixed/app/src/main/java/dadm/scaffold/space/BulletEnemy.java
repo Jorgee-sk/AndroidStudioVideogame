@@ -41,7 +41,7 @@ public class BulletEnemy extends Sprite {
     }
 
 
-    private void removeObject(GameEngine gameEngine) {
+    public void removeObject(GameEngine gameEngine) {
         gameEngine.removeGameObject(this);
         // And return it to the pool
         parent.releaseBullet(this);

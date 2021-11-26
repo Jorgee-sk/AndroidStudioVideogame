@@ -17,10 +17,11 @@ public class ShotBird extends Asteroid{
 
 
     private final GameController gameController;
+    List<BulletEnemy> bullets = new ArrayList<BulletEnemy>();
 
     private static final int INITIAL_BULLET_POOL_AMOUNT = 6;
     private static final long TIME_BETWEEN_BULLETS = 250;
-    List<BulletEnemy> bullets = new ArrayList<BulletEnemy>();
+
     private long timeSinceLastFire;
 
     public ShotBird(GameController gameController, GameEngine gameEngine) {
@@ -87,7 +88,7 @@ public class ShotBird extends Asteroid{
         if (currentMillis > waveTimestamp) {
         //DISPARO
 
-            BulletEnemy bullet = getBullet();
+            BulletEnemy bullet = getBullet(gameEngine);
             if (bullet == null) {
                 return;
             }
@@ -108,39 +109,29 @@ public class ShotBird extends Asteroid{
     }
 
     private void initBulletPool(GameEngine gameEngine) {
-        for (int i=0; i<INITIAL_BULLET_POOL_AMOUNT; i++) {
+        for (int i=0; i<1000; i++) {
             bullets.add(new BulletEnemy(gameEngine));
         }
     }
 
-    private BulletEnemy getBullet() {
+    private BulletEnemy getBullet(GameEngine gameEngine) {
         if (bullets.isEmpty()) {
             return null;
         }
-        return bullets.remove(0);
+        BulletEnemy aux  =bullets.remove(0);
+        gameController.enemyBullets.add(aux);
+        return aux;
     }
 
     void releaseBullet(BulletEnemy bullet) {
         bullets.add(bullet);
+        gameController.enemyBullets.remove(bullet);
+
+
     }
 
 
 
-    private void checkFiring(long elapsedMillis, GameEngine gameEngine) {
-        if (gameEngine.theInputController.isFiring && timeSinceLastFire > TIME_BETWEEN_BULLETS) {
-            BulletEnemy bullet = getBullet();
-            if (bullet == null) {
-                return;
-            }
-            bullet.init(this, positionX + width/2, positionY);
-            gameEngine.addGameObject(bullet);
-            timeSinceLastFire = 0;
-            gameEngine.onGameEvent(GameEvent.LaserFired);
-        }
-        else {
-            timeSinceLastFire += elapsedMillis;
-        }
-    }
 
 
 }

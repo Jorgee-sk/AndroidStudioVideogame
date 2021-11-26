@@ -27,6 +27,7 @@ public class GameController extends GameObject {
     int mNumLifes = 0;
     GameEngine gameEngine;
 
+    List<BulletEnemy> enemyBullets = new ArrayList<BulletEnemy>();
 
     public GameController(GameEngine gameEngine) {
         this.gameEngine = gameEngine;
@@ -97,7 +98,7 @@ public class GameController extends GameObject {
             else {
                 mNumLifes--;
                 gameEngine.onGameEvent(GameEvent.LifeLost);
-                SpaceShipPlayer newLife = new SpaceShipPlayer(gameEngine);
+                SpaceShipPlayer newLife = new SpaceShipPlayer(this,gameEngine);
                 gameEngine.addGameObject(newLife);
                 newLife.startGame();
                 // We wait to start spawning more enemies

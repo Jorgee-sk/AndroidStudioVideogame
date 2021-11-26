@@ -31,7 +31,7 @@ public class SpaceShipPlayer extends Sprite {
 
     public SpaceShipPlayer(GameController gameController,GameEngine gameEngine){
 
-        super(gameEngine,R.drawable.avioningame,112,100);
+        super(gameEngine,R.drawable.avioningame,85,70,30,+25);
         nextResourceIntegerId = R.drawable.avioningame;
         speedFactor = pixelFactor * 100d / 400d; // We want to move at 100px per second on a 400px tall screen
         maxX = gameEngine.width - width;

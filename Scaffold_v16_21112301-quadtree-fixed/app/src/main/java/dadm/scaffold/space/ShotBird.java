@@ -25,7 +25,7 @@ public class ShotBird extends Asteroid{
     private long timeSinceLastFire;
 
     public ShotBird(GameController gameController, GameEngine gameEngine) {
-        super(gameController, gameEngine, R.drawable.abe2,50,100);
+        super(gameController, gameEngine, R.drawable.pajaroderecha,100,70,30,0);
         this.speed = 200d * pixelFactor/1000d;
         this.gameController = gameController;
 
@@ -43,7 +43,7 @@ public class ShotBird extends Asteroid{
         // They initialize outside of the screen vertically
         positionY =gameEngine.height/10;
         rotationSpeed = 0 ;
-        rotation = 90;
+        rotation = 0;
 
         currentMillis = 0;
         bulletsSpawned = 0;
@@ -67,11 +67,12 @@ public class ShotBird extends Asteroid{
         positionY += speedY * elapsedMillis;
         rotation += rotationSpeed * elapsedMillis;
         if (positionX > gameEngine.width+100) {
-            rotation = 275;
+
+            setBitmap(R.drawable.pajaroizquierda);
             speedX = speedX*(-1);
         }
         else if (positionX < 0-400) {
-            rotation = 90;
+            setBitmap(R.drawable.pajaroderecha);
             speedX = speedX*(-1);
         }
         // Check of the sprite goes out of the screen and return it to the pool if so

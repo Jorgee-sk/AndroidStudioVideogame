@@ -24,7 +24,7 @@ public abstract class Sprite extends ScreenGameObject {
 
     private GameEngine theGameEngine;
 
-    protected Sprite (GameEngine gameEngine, int drawableRes,double pixelX, double pixelY) {
+    protected Sprite (GameEngine gameEngine, int drawableRes,double pixelX, double pixelY, int pixelXoff, int pixelYoff) {
         this.theGameEngine = gameEngine;
 
         Resources r = gameEngine.getContext().getResources();
@@ -34,6 +34,8 @@ public abstract class Sprite extends ScreenGameObject {
 
         this.height = (int) (pixelX * this.pixelFactor);
         this.width = (int) (pixelY * this.pixelFactor);
+        this.pixelXoff = (int) (pixelXoff * this.pixelFactor);
+        this.pixelYoff =(int)  (pixelYoff * this.pixelFactor);
 
         this.bitmap = ((BitmapDrawable) spriteDrawable).getBitmap();
 

@@ -15,8 +15,8 @@ public class Asteroid extends Sprite {
     protected double speedY;
     protected double rotationSpeed;
 
-    public Asteroid(GameController gameController, GameEngine gameEngine,int drawable,double pixelX,double pixelY) {
-        super(gameEngine, drawable,pixelX,pixelY);
+    public Asteroid(GameController gameController, GameEngine gameEngine,int drawable,double pixelX,double pixelY, int pixelXoff, int pixelYoff) {
+        super(gameEngine, drawable,pixelX,pixelY,pixelXoff,pixelYoff);
         this.speed = 200d * pixelFactor/1000d;
         this.gameController = gameController;
     }

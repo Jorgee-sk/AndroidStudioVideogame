@@ -13,7 +13,7 @@ public class Bullet extends Sprite {
     private SpaceShipPlayer parent;
 
     public Bullet(GameEngine gameEngine){
-        super(gameEngine, R.drawable.bullet,30,8);
+        super(gameEngine, R.drawable.bullet,30,8,0,0);
 
         speedFactor = gameEngine.pixelFactor * -300d / 1000d;
     }

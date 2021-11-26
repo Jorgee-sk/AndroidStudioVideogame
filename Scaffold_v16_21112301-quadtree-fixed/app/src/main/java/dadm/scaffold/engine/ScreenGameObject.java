@@ -10,6 +10,9 @@ public abstract class ScreenGameObject extends GameObject {
     protected int width;
     protected int height;
 
+    protected int pixelXoff;
+    protected  int pixelYoff;
+
     public double radius;
 
     public abstract void onCollision(GameEngine gameEngine, ScreenGameObject otherObject);
@@ -18,8 +21,8 @@ public abstract class ScreenGameObject extends GameObject {
 
     public void onPostUpdate(GameEngine gameEngine) {
         mBoundingRect.set(
-                (int) positionX,
-                (int) positionY,
+                (int) positionX+pixelXoff,
+                (int) positionY + pixelYoff,
                 (int) positionX + width,
                 (int) positionY + height);
     }

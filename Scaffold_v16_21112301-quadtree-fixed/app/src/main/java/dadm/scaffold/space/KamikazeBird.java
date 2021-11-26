@@ -14,7 +14,7 @@ public class KamikazeBird extends Asteroid {
 
 
     public KamikazeBird(GameController gameController, GameEngine gameEngine) {
-        super(gameController, gameEngine,R.drawable.ave,50,100);
+        super(gameController, gameEngine,R.drawable.avekamikaze,70,80,20,40);
         this.speed = 200d * pixelFactor/1000d;
         this.gameController = gameController;
 
@@ -32,7 +32,7 @@ public class KamikazeBird extends Asteroid {
         // They initialize outside of the screen vertically
         positionY =0;
         rotationSpeed = 0 ;
-        rotation = 180;
+        rotation = 0;
 
 
 

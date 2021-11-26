@@ -20,7 +20,7 @@ public class ShotBird extends Asteroid{
     List<BulletEnemy> bullets = new ArrayList<BulletEnemy>();
 
     private static final int INITIAL_BULLET_POOL_AMOUNT = 6;
-    private static final long TIME_BETWEEN_BULLETS = 250;
+    private static final long TIME_BETWEEN_BULLETS = 800;
 
     private long timeSinceLastFire;
 
@@ -85,7 +85,7 @@ public class ShotBird extends Asteroid{
 
         long waveTimestamp = bulletsSpawned*TIME_BETWEEN_BULLETS;
 
-        if (currentMillis > waveTimestamp) {
+        if (currentMillis > waveTimestamp && gameController.mState != GameController.GameControllerState.StoppingWave) {
         //DISPARO
 
             BulletEnemy bullet = getBullet(gameEngine);

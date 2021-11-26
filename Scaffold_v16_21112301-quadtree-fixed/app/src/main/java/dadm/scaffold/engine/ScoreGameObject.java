@@ -1,9 +1,11 @@
 package dadm.scaffold.engine;
 
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.view.View;
 import android.widget.TextView;
 
+import dadm.scaffold.counter.ResultsActivity;
 import dadm.scaffold.sound.GameEvent;
 
 public class ScoreGameObject extends GameObject{
@@ -12,9 +14,11 @@ public class ScoreGameObject extends GameObject{
     private boolean mPointsHaveChanged;
     private static final int POINTS_LOSS_PER_ASTEROID_MISSED = 0;
     private static final int POINTS_GAINED_PER_ASTEROID_HIT = 50;
+    private static GameEngine gameEngine;
 
-    public ScoreGameObject(View view, int viewResId) {
+    public ScoreGameObject(View view, int viewResId, GameEngine gameEngine) {
         mText = (TextView) view.findViewById(viewResId);
+        this.gameEngine = gameEngine;
     }
     @Override
     public void onUpdate(long elapsedMillis, GameEngine gameEngine) {}
@@ -42,7 +46,15 @@ public class ScoreGameObject extends GameObject{
                 mPoints -= POINTS_LOSS_PER_ASTEROID_MISSED;
             }
             mPointsHaveChanged = true;
+        }else if (gameEvent == GameEvent.GameOver) {
+            Intent intent = new Intent(gameEngine.mainActivity, ResultsActivity.class);
+            intent.putExtra("puntuacion", mPoints);
+            gameEngine.mainActivity.startActivity(intent);
         }
+
+
+
+
     }
     private Runnable mUpdateTextRunnable = new Runnable() {
 

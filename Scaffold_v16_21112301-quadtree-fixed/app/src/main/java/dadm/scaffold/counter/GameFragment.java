@@ -55,7 +55,7 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
                 ((ScaffoldActivity)getActivity()).theGameEngine.addGameObject(new ParallaxBackground(((ScaffoldActivity)getActivity()).theGameEngine,
                         20,R.drawable.fondo));
                 ((ScaffoldActivity)getActivity()).theGameEngine.addGameObject(new ScoreGameObject(
-                        getView(),R.id.score_value));
+                        getView(),R.id.score_value,((ScaffoldActivity)getActivity()).theGameEngine));
                 ((ScaffoldActivity)getActivity()).theGameEngine.addGameObject(new LivesCounter(
                         getView(),R.id.lives_value));
                 //((ScaffoldActivity)getActivity()).theGameEngine.addGameObject(new SpaceShipPlayer( ((ScaffoldActivity)getActivity()).theGameEngine));

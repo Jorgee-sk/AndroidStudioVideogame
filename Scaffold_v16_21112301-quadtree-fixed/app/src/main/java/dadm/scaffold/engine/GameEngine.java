@@ -32,7 +32,7 @@ public class GameEngine {
     public int width;
     public int height;
     public double pixelFactor;
-    private Activity mainActivity;
+    public Activity mainActivity;
     private int mNumLives = 0;
 
 

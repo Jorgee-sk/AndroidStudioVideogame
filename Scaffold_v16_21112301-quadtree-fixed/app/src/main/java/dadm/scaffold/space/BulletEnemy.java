@@ -15,7 +15,7 @@ public class BulletEnemy extends Sprite {
     private ShotBird parent;
 
     public BulletEnemy(GameEngine gameEngine){
-        super(gameEngine, R.drawable.bullet,30,8,0,0);
+        super(gameEngine, R.drawable.huevito,20,20,0,0);
 
         speedFactor = gameEngine.pixelFactor * -300d / 1000d;
     }

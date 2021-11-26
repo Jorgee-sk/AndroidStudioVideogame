@@ -28,13 +28,12 @@ public final class SoundManager {
 	private MediaPlayer bgPlayer;
 
 
-
 	private boolean soundEnabled;
 	private boolean musicEnabled;
 
 	public SoundManager(Context context) {
 		this.context = context;
-		SharedPreferences prefs = context.getSharedPreferences("soundManager",0);
+		SharedPreferences prefs = this.context.getSharedPreferences("soundManager",0);
 				//PreferenceManager.getDefaultSharedPreferences(context);
 		soundEnabled = prefs.getBoolean(SOUNDS_PREF_KEY, true);
 		musicEnabled = prefs.getBoolean(MUSIC_PREF_KEY, true);

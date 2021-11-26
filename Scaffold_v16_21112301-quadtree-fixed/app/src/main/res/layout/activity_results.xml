@@ -28,20 +28,6 @@
         app:srcCompat="@drawable/botonesparatodo" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="92dp"
-        android:layout_height="54dp"
-        android:foregroundGravity="center_vertical|center|center_horizontal"
-        android:gravity="center|center_horizontal|center_vertical"
-        android:text="MAIN MENU"
-        android:textColor="#000000"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/ButtonMainMenu"
-        app:layout_constraintEnd_toEndOf="@+id/ButtonMainMenu"
-        app:layout_constraintStart_toStartOf="@+id/ButtonMainMenu"
-        app:layout_constraintTop_toTopOf="@+id/ButtonMainMenu" />
-
-    <TextView
         android:id="@+id/textPuntuacion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -69,4 +55,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.463" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="74dp"
+        android:layout_height="71dp"
+        android:src="@drawable/ic_baseline_home_24"
+        app:layout_constraintBottom_toBottomOf="@+id/ButtonMainMenu"
+        app:layout_constraintEnd_toEndOf="@+id/ButtonMainMenu"
+        app:layout_constraintStart_toStartOf="@+id/ButtonMainMenu"
+        app:layout_constraintTop_toTopOf="@+id/ButtonMainMenu"
+         />
 </android.support.constraint.ConstraintLayout>

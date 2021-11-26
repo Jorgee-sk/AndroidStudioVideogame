@@ -29,8 +29,12 @@ public class SpaceShipPlayer extends Sprite {
 
 
     public SpaceShipPlayer(GameEngine gameEngine){
-        super(gameEngine, R.drawable.ship_a,56,44);
-        nextResourceIntegerId = R.drawable.ship_b;
+
+
+
+
+        super(gameEngine,R.drawable.avioningame,112,100);
+        nextResourceIntegerId = R.drawable.avioningame;
         speedFactor = pixelFactor * 100d / 400d; // We want to move at 100px per second on a 400px tall screen
         maxX = gameEngine.width - width;
         maxY = gameEngine.height - height;
@@ -119,12 +123,13 @@ public class SpaceShipPlayer extends Sprite {
             if (time > lastFrameChangeTime + frameLengthInMillisecond) {
                 lastFrameChangeTime = time;
                 super.setBitmap(nextResourceIntegerId);
-                if (nextResourceIntegerId == R.drawable.ship_a) {
-                    nextResourceIntegerId = R.drawable.ship_b;
+                if (nextResourceIntegerId == R.drawable.avioningame) {
+                    nextResourceIntegerId = R.drawable.avioningame;
                 } else {
-                    nextResourceIntegerId = R.drawable.ship_a;
+                    nextResourceIntegerId = R.drawable.avioningame;
                 }
             }
         super.onDraw(canvas);
     }
+
 }

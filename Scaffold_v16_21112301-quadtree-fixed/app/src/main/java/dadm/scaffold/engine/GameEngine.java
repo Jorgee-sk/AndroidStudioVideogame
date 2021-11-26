@@ -11,6 +11,7 @@ import java.util.Random;
 import dadm.scaffold.input.InputController;
 import dadm.scaffold.sound.GameEvent;
 import dadm.scaffold.sound.SoundManager;
+import dadm.scaffold.space.GameController;
 
 public class GameEngine {
 
@@ -27,14 +28,14 @@ public class GameEngine {
     private final GameView theGameView;
 
     public Random random = new Random();
-
     private SoundManager soundManager;
-
     public int width;
     public int height;
     public double pixelFactor;
-
     private Activity mainActivity;
+    private int mNumLives = 0;
+
+
 
     public GameEngine(Activity activity, GameView gameView) {
         mainActivity = activity;
@@ -183,6 +184,12 @@ public class GameEngine {
     public void onGameEvent (GameEvent gameEvent) {
         // We notify all the GameObjects
         // Also the sound manager
+
+        int numObjects = gameObjects.size();
+        for (int i=0; i<numObjects; i++) {
+            gameObjects.get(i).onGameEvent(gameEvent);
+        }
+
         soundManager.playSoundForGameEvent(gameEvent);
     }
 }

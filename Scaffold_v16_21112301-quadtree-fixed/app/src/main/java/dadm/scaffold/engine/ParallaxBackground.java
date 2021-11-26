@@ -6,6 +6,8 @@ import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 
+import dadm.scaffold.sound.GameEvent;
+
 public class ParallaxBackground extends GameObject{
 
     public GameEngine gameEngine;
@@ -61,6 +63,7 @@ public class ParallaxBackground extends GameObject{
             mPositionY -= mImageHeight;
         }
     }
+
 
     /*private void efficientDraw(Canvas canvas) {
         if (mPositionY < 0) {

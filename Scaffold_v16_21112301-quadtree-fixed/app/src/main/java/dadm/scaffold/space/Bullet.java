@@ -56,4 +56,6 @@ public class Bullet extends Sprite {
             // Add some score
         }
     }
+
+
 }

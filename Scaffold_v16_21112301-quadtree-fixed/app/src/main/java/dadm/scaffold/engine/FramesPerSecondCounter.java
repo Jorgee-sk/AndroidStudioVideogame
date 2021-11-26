@@ -4,6 +4,9 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+import dadm.scaffold.sound.GameEvent;
+import dadm.scaffold.space.GameController;
+
 public class FramesPerSecondCounter extends GameObject {
 
     private final float textWidth;
@@ -48,4 +51,6 @@ public class FramesPerSecondCounter extends GameObject {
         canvas.drawText(framesPerSecondText, textWidth / 2, (int) (canvas.getHeight() - textHeight / 2), paint);
         draws++;
     }
+
+
 }

@@ -7,17 +7,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import dadm.scaffold.BaseFragment;
 import dadm.scaffold.R;
 import dadm.scaffold.ScaffoldActivity;
+import dadm.scaffold.sound.SoundManager;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link PausaFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PausaFragment extends BaseFragment {
+public class PausaFragment extends BaseFragment /*implements View.OnClickListener*/{
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -68,7 +70,9 @@ public class PausaFragment extends BaseFragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-
+        /*super.onViewCreated(view, savedInstanceState);
+        view.findViewById(R.id.buttonSound).setOnClickListener(this);
+        view.findViewById(R.id.buttonSound2).setOnClickListener(this);*/
 
         //BOTON EXIT---------------------------------------------------
         ImageButton btnExit = (ImageButton) getView().findViewById(R.id.ExitButton);
@@ -99,14 +103,62 @@ public class PausaFragment extends BaseFragment {
             }
         });
 
+       //BOTON SILENCIAR FX----------------------------------------------------------
+        ImageButton btnMuteFX = (ImageButton) getView().findViewById(R.id.buttonSound);
+        btnMuteFX.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (view.getId() == R.id.buttonSound) {
+                    SoundManager soundManager = ((ScaffoldActivity) getActivity()).getSoundManager();
+                    soundManager.toggleMusicStatus();
+                    updateSoundButton();
+                }
 
 
+            }
+        });
 
+        //BOTON SILENCIAR MUSICA--------------------------------------------
+        ImageButton btnMuteMusic = (ImageButton) getView().findViewById(R.id.buttonSound2);
+        btnMuteMusic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (view.getId() == R.id.buttonSound2) {
+                    SoundManager soundManager = ((ScaffoldActivity) getActivity()).getSoundManager();
+                    soundManager.toggleSoundStatus();
+                    updateMusicButton();
+                }
+
+            }
+        });
 
 
     }//FIN ON CREATE VIEW
 
+    private void updateMusicButton() {
+        SoundManager soundManager = ((ScaffoldActivity) getActivity()).getSoundManager();
 
+        ImageView btnSounds = (ImageView) getView().findViewById(R.id.imageMusic);
+        if (soundManager.getSoundStatus()) {
+            btnSounds.setImageResource(R.drawable.notamusical);
+        } else {
+            btnSounds.setImageResource(R.drawable.notamusicalmuted);
+        }
+    }
+    private void updateSoundButton() {
+        SoundManager soundManager = ((ScaffoldActivity) getActivity()).getSoundManager();
+        
+        ImageView btnMusic = (ImageView) getView().findViewById(R.id.imageSoundFX);
+        if (soundManager.getMusicStatus()) {
+            btnMusic.setImageResource(R.drawable.ic_baseline_volume_up_24);
+        }
+        else {
+            btnMusic.setImageResource(R.drawable.ic_baseline_volume_off_24);
+        }
+
+    }
 
 }
 

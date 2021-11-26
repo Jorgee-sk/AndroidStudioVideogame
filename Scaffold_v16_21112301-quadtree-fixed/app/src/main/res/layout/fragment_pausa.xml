@@ -15,12 +15,13 @@
         android:background="#00FFFFFF"
         android:contentDescription="ResumeButton"
         android:scaleType="fitXY"
-        android:src="@android:drawable/checkbox_off_background"
+        android:src="@drawable/botonesparatodo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.201"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499"
+        tools:src="@drawable/botonesparatodo" />
 
     <ImageButton
         android:id="@+id/ExitButton"
@@ -29,32 +30,89 @@
         android:background="#00FFFFFF"
         android:contentDescription="ResumeButton"
         android:scaleType="fitXY"
-        android:src="@android:drawable/checkbox_off_background"
+        android:src="@drawable/botonesparatodo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.784"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.502" />
+        app:layout_constraintVertical_bias="0.681"
+        tools:src="@drawable/botonesparatodo" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Resume"
+    <ImageButton
+        android:id="@+id/buttonSound2"
+        android:layout_width="133dp"
+        android:layout_height="104dp"
+        android:background="#00FFFFFF"
+        android:contentDescription="SoundButton"
+        android:scaleType="fitXY"
+        android:src="@drawable/botonesparatodo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.978"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.681"
+        tools:src="@drawable/botonesparatodo" />
+
+    <ImageButton
+        android:id="@+id/buttonSound"
+        android:layout_width="133dp"
+        android:layout_height="104dp"
+        android:background="#00FFFFFF"
+        android:contentDescription="SoundButton"
+        android:scaleType="fitXY"
+        android:src="@drawable/botonesparatodo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.021"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.681"
+        tools:src="@drawable/botonesparatodo" />
+
+    <ImageView
+        android:id="@+id/imagePlay"
+        android:layout_width="72dp"
+        android:layout_height="50dp"
+        android:src="@android:drawable/ic_media_play"
         app:layout_constraintBottom_toBottomOf="@+id/ResumeButton"
         app:layout_constraintEnd_toEndOf="@+id/ResumeButton"
         app:layout_constraintStart_toStartOf="@+id/ResumeButton"
         app:layout_constraintTop_toTopOf="@+id/ResumeButton" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="Exit"
-        android:text="Exit"
+    <ImageView
+        android:id="@+id/imageSoundFX"
+        android:layout_width="59dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_baseline_volume_up_24"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonSound"
+        app:layout_constraintEnd_toEndOf="@+id/buttonSound"
+        app:layout_constraintStart_toStartOf="@+id/buttonSound"
+        app:layout_constraintTop_toTopOf="@+id/buttonSound"
+         />
+
+    <ImageView
+        android:id="@+id/imageMusic"
+        android:layout_width="48dp"
+        android:layout_height="43dp"
+        android:src="@drawable/notamusical"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonSound2"
+        app:layout_constraintEnd_toEndOf="@+id/buttonSound2"
+        app:layout_constraintStart_toEndOf="@+id/ExitButton"
+        app:layout_constraintTop_toTopOf="@+id/buttonSound2" />
+
+    <ImageView
+        android:id="@+id/imageExit"
+        android:layout_width="53dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginEnd="47dp"
+        android:layout_marginRight="47dp"
+        android:src="@drawable/ic_baseline_home_24"
         app:layout_constraintBottom_toBottomOf="@+id/ExitButton"
         app:layout_constraintEnd_toEndOf="@+id/ExitButton"
         app:layout_constraintStart_toStartOf="@+id/ExitButton"
         app:layout_constraintTop_toTopOf="@+id/ExitButton" />
+
 </android.support.constraint.ConstraintLayout>

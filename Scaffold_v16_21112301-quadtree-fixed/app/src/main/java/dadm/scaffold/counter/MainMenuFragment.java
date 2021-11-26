@@ -87,17 +87,17 @@ public class MainMenuFragment extends BaseFragment implements View.OnClickListen
 
 
 
-        arrayPlanes[0]= R.drawable.avion;
-        arrayPlanes[1]= R.drawable.avion2;
-        arrayPlanes[2]= R.drawable.avion3;
+        arrayPlanes[0]= R.drawable.avioningame;
+        arrayPlanes[1]= R.drawable.avioncito2;
+        arrayPlanes[2]= R.drawable.avioncito3;
 
 
-        imagenActual = settings.getInt("img1",R.drawable.avioningame);
+        //imagenActual = settings.getInt("img1",R.drawable.avioningame);
         if(imagenActual == R.drawable.avioningame){
             imagenActual = 0;
-        }else if(R.drawable.ave1 == imagenActual){
+        }else if(R.drawable.avioncito2 == imagenActual){
             imagenActual = 1;
-        }else{
+        }else if(R.drawable.avioncito3 == imagenActual){
             imagenActual = 2;
         }
 

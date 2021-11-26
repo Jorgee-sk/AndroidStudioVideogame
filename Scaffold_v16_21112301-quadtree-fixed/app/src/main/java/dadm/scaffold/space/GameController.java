@@ -58,7 +58,6 @@ public class GameController extends GameObject {
             gameEngine.onGameEvent(GameEvent.LifeAdded);
         }
         mState = GameControllerState.StoppingWave;
-
     }
 
     @Override

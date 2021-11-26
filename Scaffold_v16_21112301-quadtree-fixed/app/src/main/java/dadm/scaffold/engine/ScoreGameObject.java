@@ -2,10 +2,15 @@ package dadm.scaffold.engine;
 
 import android.content.Intent;
 import android.graphics.Canvas;
+import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.widget.TextView;
 
-import dadm.scaffold.counter.ResultsActivity;
+import dadm.scaffold.R;
+import dadm.scaffold.ScaffoldActivity;
+import dadm.scaffold.counter.PausaFragment;
+import dadm.scaffold.counter.ResultsFragment;
 import dadm.scaffold.sound.GameEvent;
 
 public class ScoreGameObject extends GameObject{
@@ -47,9 +52,16 @@ public class ScoreGameObject extends GameObject{
             }
             mPointsHaveChanged = true;
         }else if (gameEvent == GameEvent.GameOver) {
-            Intent intent = new Intent(gameEngine.mainActivity, ResultsActivity.class);
-            intent.putExtra("puntuacion", mPoints);
-            gameEngine.mainActivity.startActivity(intent);
+
+            ResultsFragment f1 = new ResultsFragment();
+            Bundle b1 = new Bundle();
+            b1.putInt("Score",mPoints);
+            f1.setArguments(b1);
+            gameEngine.mainActivity.getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.container,f1)
+                    .addToBackStack(null)
+                    .commit();
         }
 
 

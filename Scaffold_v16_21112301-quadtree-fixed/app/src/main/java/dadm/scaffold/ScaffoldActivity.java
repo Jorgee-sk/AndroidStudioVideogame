@@ -10,6 +10,7 @@ import android.view.View;
 import dadm.scaffold.counter.GameFragment;
 import dadm.scaffold.counter.MainMenuFragment;
 import dadm.scaffold.counter.PausaFragment;
+import dadm.scaffold.counter.ResultsFragment;
 import dadm.scaffold.engine.GameEngine;
 import dadm.scaffold.sound.SoundManager;
 

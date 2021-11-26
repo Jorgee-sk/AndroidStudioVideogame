@@ -82,8 +82,8 @@ public class MainMenuFragment extends BaseFragment implements View.OnClickListen
         //view.findViewById(R.id.imageView2).startAnimation(pulseAnimation);
 
         arrayPlanes[0]= R.drawable.avion;
-        arrayPlanes[1]= R.drawable.ave1;
-        arrayPlanes[2]= R.drawable.ave2;
+        arrayPlanes[1]= R.drawable.avion2;
+        arrayPlanes[2]= R.drawable.avion3;
 
         imagenActual = settings.getInt("img1",0);
 

@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import dadm.scaffold.BaseFragment;
 import dadm.scaffold.R;
 import dadm.scaffold.ScaffoldActivity;
+import dadm.scaffold.sound.SoundManager;
 
 
 public class MainMenuFragment extends BaseFragment implements View.OnClickListener {
@@ -38,7 +39,10 @@ public class MainMenuFragment extends BaseFragment implements View.OnClickListen
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         view.findViewById(R.id.btn_start).setOnClickListener(this);
+        view.findViewById(R.id.buttonMuteSound).setOnClickListener(this);
+        view.findViewById(R.id.buttonMuteMusic).setOnClickListener(this);
 
         SharedPreferences settings = getActivity().getSharedPreferences("planeSelected", 0);
 
@@ -126,6 +130,40 @@ public class MainMenuFragment extends BaseFragment implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-        ((ScaffoldActivity)getActivity()).startGame();
+        if (v.getId() == R.id.btn_start){
+            ((ScaffoldActivity) getActivity()).startGame();
+        }
+        else if (v.getId() == R.id.buttonMuteSound) {
+            SoundManager soundManager = ((ScaffoldActivity) getActivity()).getSoundManager();
+            soundManager.toggleMusicStatus();
+            updateSoundAndMusicButtons();
+        }
+        else if (v.getId() == R.id.buttonMuteMusic) {
+            SoundManager soundManager = ((ScaffoldActivity) getActivity()).getSoundManager();
+            soundManager.toggleSoundStatus();
+            updateSoundAndMusicButtons();
+        }
+
     }
+
+    private void updateSoundAndMusicButtons() {
+        SoundManager soundManager = ((ScaffoldActivity) getActivity()).getSoundManager();
+
+        ImageView btnMusic = (ImageView) getView().findViewById(R.id.imageView3);
+        if (soundManager.getMusicStatus()) {
+            btnMusic.setImageResource(R.drawable.ic_baseline_volume_up_24);
+        }
+        else {
+            btnMusic.setImageResource(R.drawable.ic_baseline_volume_off_24);
+        }
+
+        ImageView btnSounds = (ImageView) getView().findViewById(R.id.imageView);
+        if (soundManager.getSoundStatus()) {
+            btnSounds.setImageResource(R.drawable.notamusical);
+        }
+        else {
+            btnSounds.setImageResource(R.drawable.notamusicalmuted);
+        }
+    }
+
 }

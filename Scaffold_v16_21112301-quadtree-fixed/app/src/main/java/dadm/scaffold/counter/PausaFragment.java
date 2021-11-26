@@ -7,10 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import dadm.scaffold.BaseFragment;
 import dadm.scaffold.R;
 import dadm.scaffold.ScaffoldActivity;
+import dadm.scaffold.sound.SoundManager;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -98,6 +100,36 @@ public class PausaFragment extends BaseFragment {
 
             }
         });
+        //BOTON SILENCIAR FX----------------------------------------------------------
+        ImageButton btnMuteFX = (ImageButton) getView().findViewById(R.id.buttonSound);
+        btnMuteFX.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (view.getId() == R.id.buttonMuteSound) {
+                    SoundManager soundManager = ((ScaffoldActivity) getActivity()).getSoundManager();
+                    soundManager.toggleMusicStatus();
+                    updateSoundAndMusicButtons();
+                }
+
+
+            }
+        });
+        //BOTON SILENCIAR MUSICA--------------------------------------------
+        ImageButton btnMuteMusic = (ImageButton) getView().findViewById(R.id.buttonSound2);
+        btnMuteMusic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (view.getId() == R.id.buttonMuteMusic) {
+                    SoundManager soundManager = ((ScaffoldActivity) getActivity()).getSoundManager();
+                    soundManager.toggleMusicStatus();
+                    updateSoundAndMusicButtons();
+                }
+
+            }
+        });
+
 
 
 
@@ -107,6 +139,27 @@ public class PausaFragment extends BaseFragment {
     }//FIN ON CREATE VIEW
 
 
+    private void updateSoundAndMusicButtons() {
+        SoundManager soundManager = ((ScaffoldActivity) getActivity()).getSoundManager();
+
+        ImageView btnMusic = (ImageView) getView().findViewById(R.id.imageSoundFX);
+        if (soundManager.getMusicStatus()) {
+            btnMusic.setImageResource(R.drawable.ic_baseline_volume_up_24);
+        }
+        else {
+            btnMusic.setImageResource(R.drawable.ic_baseline_volume_off_24);
+        }
+
+        ImageView btnSounds = (ImageView) getView().findViewById(R.id.imageMusic);
+        if (soundManager.getSoundStatus()) {
+            btnSounds.setImageResource(R.drawable.notamusical);
+        }
+        else {
+            btnSounds.setImageResource(R.drawable.notamusicalmuted);
+        }
+
+
+    }
 
 }
 

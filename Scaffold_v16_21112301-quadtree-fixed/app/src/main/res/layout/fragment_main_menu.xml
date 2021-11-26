@@ -8,20 +8,19 @@
     android:background="@drawable/fondo">
 
     <ImageButton
-        android:id="@+id/buttonAvion2"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:id="@+id/buttonMuteMusic"
+        android:layout_width="76dp"
+        android:layout_height="79dp"
         android:background="#00FFFFFF"
-        android:contentDescription="Button change plane"
-        android:rotationY="-180"
+        android:contentDescription="Button mute music"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageView2"
-        app:layout_constraintHorizontal_bias="0.566"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.952"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.778"
-        app:srcCompat="@drawable/botoncambio" />
+        app:layout_constraintVertical_bias="0.949"
+        app:srcCompat="@drawable/botonesparatodo" />
 
     <TextView
         android:id="@+id/GameTitle"
@@ -59,8 +58,56 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_start"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.363"
         app:srcCompat="@drawable/avion" />
+
+    <ImageButton
+        android:id="@+id/buttonAvion"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="#00FFFFFF"
+        android:contentDescription="Button change plane"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.469"
+        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.717"
+        app:srcCompat="@drawable/botoncambio" />
+
+    <ImageView
+        android:id="@+id/img_title"
+        android:layout_width="355dp"
+        android:layout_height="122dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginLeft="26dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginRight="22dp"
+        android:layout_marginBottom="90dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_start"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/GameSubtitle"
+        app:layout_constraintVertical_bias="0.642"
+        app:srcCompat="@drawable/titulo" />
+
+    <ImageButton
+        android:id="@+id/buttonAvion2"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="#00FFFFFF"
+        android:contentDescription="Button change plane"
+        android:rotationY="-180"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageView2"
+        app:layout_constraintHorizontal_bias="0.566"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.717"
+        app:srcCompat="@drawable/botoncambio" />
 
     <ImageButton
         android:id="@+id/btn_start"
@@ -77,40 +124,43 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.452"
+        app:layout_constraintVertical_bias="0.37"
         app:srcCompat="@drawable/boton" />
 
-    <ImageView
-        android:id="@+id/img_title"
-        android:layout_width="355dp"
-        android:layout_height="122dp"
-        android:layout_marginStart="26dp"
-        android:layout_marginLeft="26dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="22dp"
-        android:layout_marginRight="22dp"
-        android:layout_marginBottom="90dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_start"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.545"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/GameSubtitle"
-        app:layout_constraintVertical_bias="0.46"
-        app:srcCompat="@drawable/titulo" />
-
     <ImageButton
-        android:id="@+id/buttonAvion"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:id="@+id/buttonMuteSound"
+        android:layout_width="76dp"
+        android:layout_height="79dp"
         android:background="#00FFFFFF"
-        android:contentDescription="Button change plane"
+        android:contentDescription="Button mute sound"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.469"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintHorizontal_bias="0.07"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.778"
-        app:srcCompat="@drawable/botoncambio" />
+        app:layout_constraintVertical_bias="0.949"
+        app:srcCompat="@drawable/botonesparatodo" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="52dp"
+        android:layout_height="44dp"
+        android:src="@drawable/notamusical"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonMuteMusic"
+        app:layout_constraintEnd_toEndOf="@+id/buttonMuteMusic"
+        app:layout_constraintStart_toStartOf="@+id/buttonMuteMusic"
+        app:layout_constraintTop_toTopOf="@+id/buttonMuteMusic" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="52dp"
+        android:layout_height="44dp"
+        android:src="@drawable/ic_baseline_volume_up_24"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonMuteSound"
+        app:layout_constraintEnd_toEndOf="@+id/buttonMuteSound"
+        app:layout_constraintStart_toStartOf="@+id/buttonMuteSound"
+        app:layout_constraintTop_toTopOf="@+id/buttonMuteSound"
+         />
 
 </android.support.constraint.ConstraintLayout>

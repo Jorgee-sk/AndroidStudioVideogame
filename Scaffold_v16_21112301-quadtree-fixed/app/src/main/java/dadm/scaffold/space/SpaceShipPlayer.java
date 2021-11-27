@@ -33,7 +33,7 @@ public class SpaceShipPlayer extends Sprite {
 
     public SpaceShipPlayer(GameController gameController,GameEngine gameEngine, int resource){
 
-        super(gameEngine,resource,85,70,30,+25);
+        super(gameEngine,resource,85,80,30,+25);
         this.resource = resource;
         nextResourceIntegerId = resource;
         speedFactor = pixelFactor * 100d / 400d; // We want to move at 100px per second on a 400px tall screen

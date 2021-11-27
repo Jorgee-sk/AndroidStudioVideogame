@@ -94,6 +94,25 @@ public class SpaceShipPlayer extends Sprite {
     }
 
     private void checkFiring(long elapsedMillis, GameEngine gameEngine) {
+
+        if(gameEngine.theInputController.isFiring && timeSinceLastFire > TIME_BETWEEN_BULLETS){
+            Bullet bullet = getBullet();
+            Bullet bullet2 = getBullet();
+            if (bullet == null || bullet2 == null) {
+                return;
+            }
+            bullet.init(this, positionX + width/4.5, positionY);
+            bullet2.init(this, positionX + width/1, positionY);
+            gameEngine.addGameObject(bullet);
+            gameEngine.addGameObject(bullet2);
+            timeSinceLastFire = 0;
+            gameEngine.onGameEvent(GameEvent.LaserFired);
+        }
+        else {
+            timeSinceLastFire += elapsedMillis;
+        }
+
+        /*
         if (gameEngine.theInputController.isFiring && timeSinceLastFire > TIME_BETWEEN_BULLETS) {
             Bullet bullet = getBullet();
             if (bullet == null) {
@@ -106,7 +125,7 @@ public class SpaceShipPlayer extends Sprite {
         }
         else {
             timeSinceLastFire += elapsedMillis;
-        }
+        }*/
     }
 
     @Override

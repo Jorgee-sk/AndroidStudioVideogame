@@ -16,7 +16,7 @@ public class PowerUp extends Sprite {
     protected double rotationSpeed;
 
     public PowerUp(GameController gameController, GameEngine gameEngine) {
-        super(gameEngine, R.drawable.maletita,20,20,0,0);
+        super(gameEngine, R.drawable.persona,40,40,0,0);
         this.speed = 200d * pixelFactor/1000d;
         this.gameController = gameController;
     }
@@ -70,10 +70,13 @@ public class PowerUp extends Sprite {
             // Remove both from the game (and return them to their pools)
             removeObject(gameEngine);
             this.removeObject(gameEngine);
+            powerUPtake = true;
+            count.start();
             gameEngine.onGameEvent(GameEvent.PowerUpHit);
             // Add some score
         }
     }
+
 
 
 

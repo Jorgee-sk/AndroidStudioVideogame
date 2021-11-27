@@ -8,6 +8,9 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.CountDownTimer;
+
+import java.util.Timer;
 
 import dadm.scaffold.R;
 
@@ -21,8 +24,19 @@ public abstract class Sprite extends ScreenGameObject {
     private Bitmap bitmap;
 
     private final Matrix matrix = new Matrix();
-
+    public static boolean powerUPtake;
     private GameEngine theGameEngine;
+    public static CountDownTimer count = new CountDownTimer(5000,1000) {
+        @Override
+        public void onTick(long l) {
+
+        }
+
+        @Override
+        public void onFinish() {
+            powerUPtake = false;
+        }
+    };
 
     protected Sprite (GameEngine gameEngine, int drawableRes,double pixelX, double pixelY, int pixelXoff, int pixelYoff) {
         this.theGameEngine = gameEngine;
@@ -36,7 +50,6 @@ public abstract class Sprite extends ScreenGameObject {
         this.width = (int) (pixelY * this.pixelFactor);
         this.pixelXoff = (int) (pixelXoff * this.pixelFactor);
         this.pixelYoff =(int)  (pixelYoff * this.pixelFactor);
-
         this.bitmap = ((BitmapDrawable) spriteDrawable).getBitmap();
 
         radius = Math.max(height, width)/2;

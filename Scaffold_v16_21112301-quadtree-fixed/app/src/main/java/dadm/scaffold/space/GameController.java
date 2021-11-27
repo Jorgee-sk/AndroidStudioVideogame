@@ -20,6 +20,9 @@ public class GameController extends GameObject {
     private static final double WAITING_TIME = 500;
     private long currentMillis;
 
+    private int powerUpSpawned;
+    private int TIME_BETWEEN_POWERUP = 10000;
+
     public static GameControllerState mState;
     public static double mWaitingTime;
 
@@ -54,6 +57,7 @@ public class GameController extends GameObject {
     public void startGame() {
         currentMillis = 0;
         enemiesSpawned = 0;
+        powerUpSpawned = 0;
         mWaitingTime = 0;
         for (int i=0; i<INITIAL_LIFES; i++) {
             gameEngine.onGameEvent(GameEvent.LifeAdded);
@@ -64,6 +68,7 @@ public class GameController extends GameObject {
         ShotBird shotBird = new ShotBird(this, gameEngine);
         shotBird.init(gameEngine);
         gameEngine.addGameObject(shotBird);
+
 
     }
 
@@ -81,11 +86,30 @@ public class GameController extends GameObject {
             return;
         }*/
         TIME_BETWEEN_ENEMIES -= 15;
-        Log.i("tagbtwn", String.valueOf(TIME_BETWEEN_ENEMIES));
+
         if (mState == GameControllerState.SpawningEnemies) {
             currentMillis += elapsedMillis;
+
+
+            //SPAWN POWERUP
+            long PowerUpTimestamp = powerUpSpawned * TIME_BETWEEN_POWERUP;
+            if (currentMillis > PowerUpTimestamp) {
+                Log.i("tagbtwn", String.valueOf(TIME_BETWEEN_POWERUP));
+                PowerUp powerUp = new PowerUp(this, gameEngine);
+                powerUp.init(gameEngine);
+                gameEngine.addGameObject(powerUp);
+
+                powerUpSpawned++;
+                return;
+            }
+
+
+
+
+            //SPAWN ENEMIGOS
             long waveTimestamp = enemiesSpawned * TIME_BETWEEN_ENEMIES /10000;
             if (currentMillis > waveTimestamp) {
+
                 // Spawn a new enemy
                 Asteroid a = asteroidPool.remove(0);
                 a.init(gameEngine);
@@ -93,6 +117,9 @@ public class GameController extends GameObject {
                 enemiesSpawned++;
                 return;
             }
+
+
+
         }
         else if (mState == GameControllerState.StoppingWave) {
             mWaitingTime += elapsedMillis;

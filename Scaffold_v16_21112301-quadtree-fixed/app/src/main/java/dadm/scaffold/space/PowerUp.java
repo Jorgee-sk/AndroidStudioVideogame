@@ -4,51 +4,45 @@ import dadm.scaffold.R;
 import dadm.scaffold.engine.GameEngine;
 import dadm.scaffold.engine.ScreenGameObject;
 import dadm.scaffold.engine.Sprite;
-import dadm.scaffold.sound.GameEvent;
 
-public class KamikazeBird extends Asteroid {
-
+public class PowerUp extends Sprite {
 
     private final GameController gameController;
 
+    protected double speed;
+    protected double speedX;
+    protected double speedY;
+    protected double rotationSpeed;
 
-
-    public KamikazeBird(GameController gameController, GameEngine gameEngine) {
-        super(gameController, gameEngine,R.drawable.avekamikaze,70,80,20,40);
+    public PowerUp(GameController gameController, GameEngine gameEngine) {
+        super(gameEngine, R.drawable.maletita,20,20,0,0);
         this.speed = 200d * pixelFactor/1000d;
         this.gameController = gameController;
-
     }
 
-
-    @Override
     public void init(GameEngine gameEngine) {
         // They initialize in a 0 degrees angle
         double angle = gameEngine.random.nextDouble()*Math.PI/3d-Math.PI/6d;
-        speedY = 1;
+        speedY = 0.7;
         speedX = 0;
         // initialize in the central 50% of the screen horizontally
         positionX = gameEngine.random.nextInt(gameEngine.width)-100;
         // They initialize outside of the screen vertically
-        positionY =-200;
+        positionY =0-200;
         rotationSpeed = 0 ;
         rotation = 0;
 
-
-
-
     }
 
-    //@Override
-    //public void startGame() {
-    //}
+    @Override
+    public void startGame() {
+    }
 
-
-    //public void removeObject(GameEngine gameEngine) {
-    //    // Return to the pool
-    //    gameEngine.removeGameObject(this);
-    //    gameController.returnToPool(this);
-    //}
+    public void removeObject(GameEngine gameEngine) {
+        // Return to the pool
+        gameEngine.removeGameObject(this);
+       // gameController.returnToPool(this);
+    }
 
     @Override
     public void onUpdate(long elapsedMillis, GameEngine gameEngine) {
@@ -65,7 +59,7 @@ public class KamikazeBird extends Asteroid {
         if (positionY > gameEngine.height) {
             // Return to the pool
             gameEngine.removeGameObject(this);
-            gameController.returnToPool(this);
+            //gameController.returnToPool(this);
         }
     }
 
@@ -73,6 +67,10 @@ public class KamikazeBird extends Asteroid {
     public void onCollision(GameEngine gameEngine, ScreenGameObject otherObject) {
 
     }
+
+
+
+
 
 
 }

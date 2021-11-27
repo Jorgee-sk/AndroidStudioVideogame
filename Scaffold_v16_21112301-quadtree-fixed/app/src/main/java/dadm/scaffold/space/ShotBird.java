@@ -37,7 +37,7 @@ public class ShotBird extends Asteroid{
     public void init(GameEngine gameEngine) {
         // They initialize in a 0 degrees angle
         double angle = gameEngine.random.nextDouble()*Math.PI/3d-Math.PI/6d;
-        speedY = 0.06;
+        speedY = 0.02;
         speedX = 0.6;
         // initialize in the central 50% of the screen horizontally
         positionX = 0-400;

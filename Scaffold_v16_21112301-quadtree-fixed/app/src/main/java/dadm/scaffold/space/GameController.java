@@ -2,6 +2,7 @@ package dadm.scaffold.space;
 
 import android.app.Activity;
 import android.graphics.Canvas;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,7 @@ import dadm.scaffold.sound.GameEvent;
 
 public class GameController extends GameObject {
 
-    private static final int TIME_BETWEEN_ENEMIES = 500;
+    private int TIME_BETWEEN_ENEMIES = 2000 *10000;
     private static final double STOPPING_WAVE_WAITING_TIME = 2000;
     private static final double WAITING_TIME = 500;
     private long currentMillis;
@@ -34,7 +35,7 @@ public class GameController extends GameObject {
     public GameController(GameEngine gameEngine) {
         this.gameEngine = gameEngine;
         // We initialize the pool of items now
-        for (int i=0; i<10; i++) {
+        for (int i=0; i<20; i++) {
             asteroidPool.add(new KamikazeBird(this, gameEngine));
             asteroidPool.add(new ShotBird(this, gameEngine));
         }
@@ -58,6 +59,12 @@ public class GameController extends GameObject {
             gameEngine.onGameEvent(GameEvent.LifeAdded);
         }
         mState = GameControllerState.StoppingWave;
+
+
+        ShotBird shotBird = new ShotBird(this, gameEngine);
+        shotBird.init(gameEngine);
+        gameEngine.addGameObject(shotBird);
+
     }
 
     @Override
@@ -73,10 +80,11 @@ public class GameController extends GameObject {
             enemiesSpawned++;
             return;
         }*/
-
+        TIME_BETWEEN_ENEMIES -= 15;
+        Log.i("tagbtwn", String.valueOf(TIME_BETWEEN_ENEMIES));
         if (mState == GameControllerState.SpawningEnemies) {
             currentMillis += elapsedMillis;
-            long waveTimestamp = enemiesSpawned * TIME_BETWEEN_ENEMIES;
+            long waveTimestamp = enemiesSpawned * TIME_BETWEEN_ENEMIES /10000;
             if (currentMillis > waveTimestamp) {
                 // Spawn a new enemy
                 Asteroid a = asteroidPool.remove(0);

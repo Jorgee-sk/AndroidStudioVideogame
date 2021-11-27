@@ -85,7 +85,7 @@ public class ShotBird extends Asteroid{
 
         currentMillis += elapsedMillis;
 
-        TIME_BETWEEN_BULLETS = new Random().nextInt((1500 - 500) + 1) + 500;
+        TIME_BETWEEN_BULLETS = new Random().nextInt((2000 - 1000) + 1) + 1000;
         long waveTimestamp = bulletsSpawned*TIME_BETWEEN_BULLETS;
 
         if (currentMillis > waveTimestamp && gameController.mState != GameController.GameControllerState.StoppingWave) {
@@ -127,7 +127,7 @@ public class ShotBird extends Asteroid{
     }
 
     void releaseBullet(BulletEnemy bullet) {
-        bullets.add(bullet);
+        //bullets.add(bullet);
         gameController.enemyBullets.remove(bullet);
 
 

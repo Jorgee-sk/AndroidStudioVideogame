@@ -15,7 +15,7 @@ import dadm.scaffold.sound.GameEvent;
 public class SpaceShipPlayer extends Sprite {
 
     private static final int INITIAL_BULLET_POOL_AMOUNT = 6;
-    private static final long TIME_BETWEEN_BULLETS = 500;
+    private static final long TIME_BETWEEN_BULLETS = 800;
     List<Bullet> bullets = new ArrayList<Bullet>();
     private long timeSinceLastFire;
     double speedFactor;

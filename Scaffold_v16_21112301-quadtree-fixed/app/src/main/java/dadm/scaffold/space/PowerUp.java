@@ -4,6 +4,7 @@ import dadm.scaffold.R;
 import dadm.scaffold.engine.GameEngine;
 import dadm.scaffold.engine.ScreenGameObject;
 import dadm.scaffold.engine.Sprite;
+import dadm.scaffold.sound.GameEvent;
 
 public class PowerUp extends Sprite {
 
@@ -65,7 +66,13 @@ public class PowerUp extends Sprite {
 
     @Override
     public void onCollision(GameEngine gameEngine, ScreenGameObject otherObject) {
-
+        if (otherObject instanceof SpaceShipPlayer) {
+            // Remove both from the game (and return them to their pools)
+            removeObject(gameEngine);
+            this.removeObject(gameEngine);
+            gameEngine.onGameEvent(GameEvent.PowerUpHit);
+            // Add some score
+        }
     }
 
 

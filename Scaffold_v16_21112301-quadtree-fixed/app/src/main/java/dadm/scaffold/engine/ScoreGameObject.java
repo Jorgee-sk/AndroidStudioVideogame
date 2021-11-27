@@ -19,6 +19,7 @@ public class ScoreGameObject extends GameObject{
     private boolean mPointsHaveChanged;
     private static final int POINTS_LOSS_PER_ASTEROID_MISSED = 0;
     private static final int POINTS_GAINED_PER_ASTEROID_HIT = 50;
+    private static final int POINTS_GAINED_PER_POWERUP_HIT = 10;
     private static GameEngine gameEngine;
 
     public ScoreGameObject(View view, int viewResId, GameEngine gameEngine) {
@@ -42,7 +43,11 @@ public class ScoreGameObject extends GameObject{
     }
     @Override
     public void onGameEvent(GameEvent gameEvent) {
-        if (gameEvent == GameEvent.AsteroidHit) {
+        if(gameEvent == GameEvent.PowerUpHit){
+            mPoints += POINTS_GAINED_PER_POWERUP_HIT;
+            mPointsHaveChanged = true;
+
+        }else if (gameEvent == GameEvent.AsteroidHit) {
             mPoints += POINTS_GAINED_PER_ASTEROID_HIT;
             mPointsHaveChanged = true;
         }

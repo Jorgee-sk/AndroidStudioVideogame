@@ -56,11 +56,13 @@ public class ShotBird extends Asteroid{
     //}
 
 
-    //public void removeObject(GameEngine gameEngine) {
-    //    // Return to the pool
-    //    gameEngine.removeGameObject(this);
-    //    gameController.returnToPool(this);
-    //}
+    public void removeObject(GameEngine gameEngine) {
+     //   Return to the pool
+
+       gameEngine.removeGameObject(this);
+        this.setBitmap(R.drawable.pajaroderecha);
+        gameController.returnToPool(this);
+    }
 
     @Override
     public void onUpdate(long elapsedMillis, GameEngine gameEngine)         {

@@ -3,6 +3,7 @@ package dadm.scaffold.engine;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
+import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 
@@ -11,12 +12,13 @@ import dadm.scaffold.sound.GameEvent;
 public class ParallaxBackground extends GameObject{
 
     public GameEngine gameEngine;
-    public int mScreenHeight,mScreenWidth;
+    public int mScreenHeight,mScreenWidth,mTargetWidth;
     Bitmap mBitmap;
     protected double mPositionY = 0.0;
-    Double mPixelFactor, mSpeedY,mImageHeight,mImageWidth,mTargetWidth;
+    Double mPixelFactor, mSpeedY,mImageHeight,mImageWidth;
     private final Matrix mMatrix = new Matrix();
-
+    private Rect mSrcRect = new Rect();
+    private Rect mDstRect = new Rect();
 
 
     public ParallaxBackground(GameEngine gameEngine, int speed,
@@ -30,7 +32,7 @@ public class ParallaxBackground extends GameObject{
         this.mImageWidth = spriteDrawable.getIntrinsicWidth()*this.mPixelFactor;
         this.mScreenHeight = gameEngine.height;
         this.mScreenWidth = gameEngine.width;
-        this.mTargetWidth = Math.min(mImageWidth, mScreenWidth);
+        this.mTargetWidth = (int) Math.min(mImageWidth, mScreenWidth);
     }
 
 
@@ -46,8 +48,8 @@ public class ParallaxBackground extends GameObject{
 
     @Override
     public void onDraw(Canvas canvas) {
-
-        if (mPositionY > 0) {
+        efficientDraw(canvas);
+        /*if (mPositionY > 0) {
             mMatrix.reset();
             mMatrix.postScale(mPixelFactor.floatValue(),
                     mPixelFactor.floatValue());
@@ -61,11 +63,11 @@ public class ParallaxBackground extends GameObject{
         canvas.drawBitmap(mBitmap, mMatrix, null);
         if (mPositionY > mScreenHeight) {
             mPositionY -= mImageHeight;
-        }
+        }*/
     }
 
 
-    /*private void efficientDraw(Canvas canvas) {
+    private void efficientDraw(Canvas canvas) {
         if (mPositionY < 0) {
             mSrcRect.set(0,
                     (int) (-mPositionY/mPixelFactor),
@@ -101,6 +103,6 @@ public class ParallaxBackground extends GameObject{
         if (mPositionY > mScreenHeight) {
             mPositionY -= mImageHeight;
         }
-    }*/
+    }
 
 }

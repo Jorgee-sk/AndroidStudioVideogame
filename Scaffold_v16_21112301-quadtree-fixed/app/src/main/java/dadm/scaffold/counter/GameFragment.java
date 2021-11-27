@@ -1,13 +1,10 @@
 package dadm.scaffold.counter;
 
-import android.content.DialogInterface;
-import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import dadm.scaffold.BaseFragment;
@@ -21,7 +18,6 @@ import dadm.scaffold.engine.ParallaxBackground;
 import dadm.scaffold.engine.ScoreGameObject;
 import dadm.scaffold.input.JoystickInputController;
 import dadm.scaffold.space.GameController;
-import dadm.scaffold.space.SpaceShipPlayer;
 
 
 public class GameFragment extends BaseFragment implements View.OnClickListener {
@@ -53,7 +49,7 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
                 ((ScaffoldActivity)getActivity()).theGameEngine.setSoundManager(getScaffoldActivity().getSoundManager());
                 ((ScaffoldActivity)getActivity()).theGameEngine.setTheInputController(new JoystickInputController(getView()));
                 ((ScaffoldActivity)getActivity()).theGameEngine.addGameObject(new ParallaxBackground(((ScaffoldActivity)getActivity()).theGameEngine,
-                        20,R.drawable.fondo));
+                        100,R.drawable.fondoparalaje));
                 ((ScaffoldActivity)getActivity()).theGameEngine.addGameObject(new ScoreGameObject(
                         getView(),R.id.score_value,((ScaffoldActivity)getActivity()).theGameEngine));
                 ((ScaffoldActivity)getActivity()).theGameEngine.addGameObject(new LivesCounter(

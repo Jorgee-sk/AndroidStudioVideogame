@@ -18,7 +18,7 @@ public class ScoreGameObject extends GameObject{
     private int mPoints;
     private boolean mPointsHaveChanged;
     private static final int POINTS_LOSS_PER_ASTEROID_MISSED = 0;
-    private static final int POINTS_GAINED_PER_ASTEROID_HIT = 50;
+    private static final int POINTS_GAINED_PER_ASTEROID_HIT = 100;
     private static final int POINTS_GAINED_PER_POWERUP_HIT = 10;
     private static GameEngine gameEngine;
 
@@ -46,10 +46,36 @@ public class ScoreGameObject extends GameObject{
         if(gameEvent == GameEvent.PowerUpHit){
             mPoints += POINTS_GAINED_PER_POWERUP_HIT;
             mPointsHaveChanged = true;
+            if(mPoints >= 10000){
+
+                ResultsFragment f1 = new ResultsFragment();
+                Bundle b1 = new Bundle();
+                b1.putInt("Score",10000);
+                f1.setArguments(b1);
+                gameEngine.mainActivity.getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.container,f1)
+                        .addToBackStack(null)
+                        .commit();
+
+            }
 
         }else if (gameEvent == GameEvent.AsteroidHit) {
             mPoints += POINTS_GAINED_PER_ASTEROID_HIT;
             mPointsHaveChanged = true;
+            if(mPoints >= 10000){
+
+                ResultsFragment f1 = new ResultsFragment();
+                Bundle b1 = new Bundle();
+                b1.putInt("Score",10000);
+                f1.setArguments(b1);
+                gameEngine.mainActivity.getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.container,f1)
+                        .addToBackStack(null)
+                        .commit();
+
+            }
         }
         else if (gameEvent == GameEvent.AsteroidMissed) {
             if (mPoints > 0) {

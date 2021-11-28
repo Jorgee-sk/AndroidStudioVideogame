@@ -87,7 +87,7 @@ public class ShotBird extends Asteroid{
 
         currentMillis += elapsedMillis;
 
-        TIME_BETWEEN_BULLETS = new Random().nextInt((2000 - 1000) + 1) + 1000;
+        TIME_BETWEEN_BULLETS = new Random().nextInt((2000 - 1500) + 1) + 1500;
         long waveTimestamp = bulletsSpawned*TIME_BETWEEN_BULLETS;
 
         if (currentMillis > waveTimestamp && gameController.mState != GameController.GameControllerState.StoppingWave) {

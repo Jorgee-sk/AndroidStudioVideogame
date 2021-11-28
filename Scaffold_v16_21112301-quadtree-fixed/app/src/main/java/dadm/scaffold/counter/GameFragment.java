@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import dadm.scaffold.BaseFragment;
 import dadm.scaffold.R;
@@ -37,6 +39,18 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         view.findViewById(R.id.btn_play_pause).setOnClickListener(this);
+
+        //CAMBIO SKIN VIDAS
+        ImageView vida1 = (ImageView) getView().findViewById(R.id.imageVida1);
+        ImageView vida2 = (ImageView) getView().findViewById(R.id.imageVida2);
+        ImageView vida3 = (ImageView) getView().findViewById(R.id.imageVida3);
+
+        ScaffoldActivity scaffold = (ScaffoldActivity)getActivity();
+        vida1.setImageResource(scaffold.skin);
+        vida2.setImageResource(scaffold.skin);
+        vida3.setImageResource(scaffold.skin);
+
+
         final ViewTreeObserver observer = view.getViewTreeObserver();
         observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener(){
             @Override

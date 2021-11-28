@@ -85,18 +85,21 @@
         app:layout_constraintVertical_bias="0.22">
 
         <ImageView
+            android:id="@+id/imageVida1"
             android:layout_width="69dp"
             android:layout_height="match_parent"
             android:scaleType="fitCenter"
             android:src="@drawable/avioningame" />
 
         <ImageView
+            android:id="@+id/imageVida2"
             android:layout_width="69dp"
             android:layout_height="match_parent"
             android:scaleType="fitCenter"
             android:src="@drawable/avioningame" />
 
         <ImageView
+            android:id="@+id/imageVida3"
             android:layout_width="69dp"
             android:layout_height="match_parent"
             android:scaleType="fitCenter"

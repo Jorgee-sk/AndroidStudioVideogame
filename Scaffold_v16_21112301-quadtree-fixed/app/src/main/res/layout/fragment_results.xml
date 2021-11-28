@@ -26,7 +26,7 @@
         android:id="@+id/textPuntuacion2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="PUNTUACIÓN"
+        android:text="SCORE"
         android:textColor="#000000"
         android:textSize="34sp"
         android:textStyle="normal|bold"

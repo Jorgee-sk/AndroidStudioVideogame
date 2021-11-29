@@ -20,7 +20,7 @@ public final class SoundManager {
 	private static final String MUSIC_PREF_KEY = "Music";
 	private static final String SOUNDS_PREF_KEY = "Sound";
 
-
+	private SharedPreferences settingsAudioStart;
 	private HashMap<GameEvent, Integer> soundsMap;
 	
 	private Context context;
@@ -34,6 +34,7 @@ public final class SoundManager {
 	public SoundManager(Context context) {
 		this.context = context;
 		SharedPreferences prefs = this.context.getSharedPreferences("soundManager",0);
+		settingsAudioStart = context.getSharedPreferences("soundManager",0);
 				//PreferenceManager.getDefaultSharedPreferences(context);
 		soundEnabled = prefs.getBoolean(SOUNDS_PREF_KEY, true);
 		musicEnabled = prefs.getBoolean(MUSIC_PREF_KEY, true);
@@ -43,12 +44,14 @@ public final class SoundManager {
 	}
 
 	private void loadIfNeeded () {
+
 		if (soundEnabled) {
 			loadSounds();
 		}
 		if (musicEnabled) {
 			loadMusic();
 		}
+
 	}
 	public boolean getSoundStatus() {
 		return soundEnabled;
@@ -124,29 +127,34 @@ public final class SoundManager {
 	}
 
 	private void loadSounds() {
-		createSoundPool();
-		soundsMap = new HashMap<GameEvent, Integer>();
-		loadEventSound(context, GameEvent.AsteroidHit, "Asteroid_explosion_1.wav");
-		loadEventSound(context, GameEvent.SpaceshipHit, "Spaceship_explosion.wav");
-		loadEventSound(context, GameEvent.LaserFired, "Laser_shoot.wav");
-		loadEventSound(context, GameEvent.PowerUpHit, "powerup.mp3");
+
+			createSoundPool();
+			soundsMap = new HashMap<GameEvent, Integer>();
+			loadEventSound(context, GameEvent.AsteroidHit, "Asteroid_explosion_1.wav");
+			loadEventSound(context, GameEvent.SpaceshipHit, "Spaceship_explosion.wav");
+			loadEventSound(context, GameEvent.LaserFired, "Laser_shoot.wav");
+			loadEventSound(context, GameEvent.PowerUpHit, "powerup.mp3");
+
+
 	}
 
 	private void loadMusic() {
-		try {
-			// Important to not reuse it. It can be on a strange state
-			bgPlayer = new MediaPlayer();
-			AssetFileDescriptor afd = context.getAssets().openFd("sfx/cancionPou.mp3");
-			bgPlayer.setDataSource(afd.getFileDescriptor(),
-					afd.getStartOffset(), afd.getLength());
-			bgPlayer.setLooping(true);
-			bgPlayer.setVolume(DEFAULT_MUSIC_VOLUME, DEFAULT_MUSIC_VOLUME);
-			bgPlayer.prepare();
-			bgPlayer.start();
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}
+
+			try {
+				// Important to not reuse it. It can be on a strange state
+				bgPlayer = new MediaPlayer();
+				AssetFileDescriptor afd = context.getAssets().openFd("sfx/cancionPou.mp3");
+				bgPlayer.setDataSource(afd.getFileDescriptor(),
+						afd.getStartOffset(), afd.getLength());
+				bgPlayer.setLooping(true);
+				bgPlayer.setVolume(DEFAULT_MUSIC_VOLUME, DEFAULT_MUSIC_VOLUME);
+				bgPlayer.prepare();
+				bgPlayer.start();
+			}
+			catch (IOException e) {
+				e.printStackTrace();
+			}
+
 	}
 
 	private void createSoundPool() {

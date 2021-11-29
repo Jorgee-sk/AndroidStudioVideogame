@@ -22,7 +22,7 @@ public class ScaffoldActivity extends AppCompatActivity {
 
     public GameEngine theGameEngine;
 
-    public SharedPreferences settings3;
+    public SharedPreferences settings3, settingsAudio;
 
     public int skin;
 
@@ -36,8 +36,16 @@ public class ScaffoldActivity extends AppCompatActivity {
                     .commit();
         }
 
+        settingsAudio = getSharedPreferences("soundManager",0);
+
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
         soundManager = new SoundManager(getApplicationContext());
+
+        if(!settingsAudio.getBoolean("Sound",true))
+            soundManager.toggleSoundStatus();
+
+        if(!settingsAudio.getBoolean("Music",true))
+            soundManager.toggleMusicStatus();
 
         skin = R.drawable.avioningame;
     }

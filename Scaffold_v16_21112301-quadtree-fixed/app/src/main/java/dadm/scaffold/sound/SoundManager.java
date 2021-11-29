@@ -130,9 +130,9 @@ public final class SoundManager {
 
 			createSoundPool();
 			soundsMap = new HashMap<GameEvent, Integer>();
-			loadEventSound(context, GameEvent.AsteroidHit, "Asteroid_explosion_1.wav");
+			loadEventSound(context, GameEvent.AsteroidHit, "pajaro.mp3");
 			loadEventSound(context, GameEvent.SpaceshipHit, "Spaceship_explosion.wav");
-			loadEventSound(context, GameEvent.LaserFired, "Laser_shoot.wav");
+			loadEventSound(context, GameEvent.LaserFired, "disparoMaleta.mp3");
 			loadEventSound(context, GameEvent.PowerUpHit, "powerup.mp3");
 
 

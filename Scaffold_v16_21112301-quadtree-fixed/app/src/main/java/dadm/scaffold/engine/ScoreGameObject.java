@@ -63,11 +63,11 @@ public class ScoreGameObject extends GameObject{
         }else if (gameEvent == GameEvent.AsteroidHit) {
             mPoints += POINTS_GAINED_PER_ASTEROID_HIT;
             mPointsHaveChanged = true;
-            if(mPoints >= 7000){
+            if(mPoints >= 10000){
 
                 ResultsFragment f1 = new ResultsFragment();
                 Bundle b1 = new Bundle();
-                b1.putInt("Score",7000);
+                b1.putInt("Score",10000);
                 f1.setArguments(b1);
                 gameEngine.mainActivity.getSupportFragmentManager()
                         .beginTransaction()

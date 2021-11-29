@@ -50,7 +50,7 @@ public class ScaffoldActivity extends AppCompatActivity {
         // Navigate the the game fragment, which makes the start automatically
         navigateToFragment( new GameFragment());
         settings3 = getSharedPreferences("planeSelected",0);
-        skin = settings3.getInt("img1",R.drawable.avion);
+        skin = settings3.getInt("img1",R.drawable.avioningame);
     }
 
     private void navigateToFragment(BaseFragment dst) {

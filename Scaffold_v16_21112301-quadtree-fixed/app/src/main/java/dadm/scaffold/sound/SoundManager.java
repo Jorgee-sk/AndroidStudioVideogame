@@ -16,7 +16,7 @@ import java.util.HashMap;
 public final class SoundManager {
 
 	private static final int MAX_STREAMS = 10;
-	private static final float DEFAULT_MUSIC_VOLUME = 0.8f;
+	private static final float DEFAULT_MUSIC_VOLUME = 0.6f;
 	private static final String MUSIC_PREF_KEY = "Music";
 	private static final String SOUNDS_PREF_KEY = "Sound";
 

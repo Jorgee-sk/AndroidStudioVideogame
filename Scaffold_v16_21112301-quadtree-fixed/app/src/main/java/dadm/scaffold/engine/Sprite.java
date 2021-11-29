@@ -63,10 +63,11 @@ public abstract class Sprite extends ScreenGameObject {
                 || positionY < - height) {
             return;
         }
+        /*
         Paint mPaint = new Paint();
         mPaint.setColor(Color.YELLOW);
         canvas.drawRect(mBoundingRect, mPaint);
-
+        */
 
 
         matrix.reset();

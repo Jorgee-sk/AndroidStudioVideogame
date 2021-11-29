@@ -21,7 +21,7 @@ public class ShotBird extends Asteroid{
     List<BulletEnemy> bullets = new ArrayList<BulletEnemy>();
 
     private static final int INITIAL_BULLET_POOL_AMOUNT = 6;
-    private static long TIME_BETWEEN_BULLETS = 800;
+    private static long TIME_BETWEEN_BULLETS;;
 
     private long timeSinceLastFire;
 
@@ -35,6 +35,8 @@ public class ShotBird extends Asteroid{
 
     @Override
     public void init(GameEngine gameEngine) {
+        TIME_BETWEEN_BULLETS =  new Random().nextInt((2500 - 1500) + 1) + 1500;
+
         // They initialize in a 0 degrees angle
         double angle = gameEngine.random.nextDouble()*Math.PI/3d-Math.PI/6d;
         speedY = 0.02;
@@ -87,7 +89,7 @@ public class ShotBird extends Asteroid{
 
         currentMillis += elapsedMillis;
 
-        TIME_BETWEEN_BULLETS = new Random().nextInt((2000 - 1500) + 1) + 1500;
+
         long waveTimestamp = bulletsSpawned*TIME_BETWEEN_BULLETS;
 
         if (currentMillis > waveTimestamp && gameController.mState != GameController.GameControllerState.StoppingWave) {

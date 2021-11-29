@@ -15,7 +15,7 @@ import dadm.scaffold.sound.GameEvent;
 
 public class GameController extends GameObject {
 
-    private int TIME_BETWEEN_ENEMIES = 2000 *10000;
+    private int TIME_BETWEEN_ENEMIES = 2000;
     private static final double STOPPING_WAVE_WAITING_TIME = 2000;
     private static final double WAITING_TIME = 500;
     private long currentMillis;
@@ -38,7 +38,7 @@ public class GameController extends GameObject {
     public GameController(GameEngine gameEngine) {
         this.gameEngine = gameEngine;
         // We initialize the pool of items now
-        for (int i=0; i<20; i++) {
+        for (int i=0; i<30; i++) {
             asteroidPool.add(new KamikazeBird(this, gameEngine));
             asteroidPool.add(new ShotBird(this, gameEngine));
         }
@@ -85,7 +85,6 @@ public class GameController extends GameObject {
             enemiesSpawned++;
             return;
         }*/
-        TIME_BETWEEN_ENEMIES -= 15;
 
         if (mState == GameControllerState.SpawningEnemies) {
             currentMillis += elapsedMillis;
@@ -107,7 +106,7 @@ public class GameController extends GameObject {
 
 
             //SPAWN ENEMIGOS
-            long waveTimestamp = enemiesSpawned * TIME_BETWEEN_ENEMIES /10000;
+            long waveTimestamp = enemiesSpawned * TIME_BETWEEN_ENEMIES;
             if (currentMillis > waveTimestamp) {
 
                 // Spawn a new enemy
@@ -173,7 +172,10 @@ public class GameController extends GameObject {
         }
         else if (gameEvent == GameEvent.LifeAdded) {
             mNumLifes++;
+        }else if(gameEvent == GameEvent.AsteroidHit){
+            TIME_BETWEEN_ENEMIES *= 0.99;
         }
+
     }
 
 }
